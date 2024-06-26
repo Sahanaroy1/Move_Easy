@@ -4,6 +4,7 @@ import logo from '../assets/Logo.png';
 import './Navbar.css'; 
 
 const Navbar = () => {
+  
   return (
     <nav className="navbar">
       <ul className="nav-links-left">
@@ -19,7 +20,10 @@ const Navbar = () => {
         <li className="nav-item"><Link to="/properties" className="nav-link">Properties</Link></li>
       </ul>
       <ul className="nav-links-left">
-        <li className="nav-item"><Link to="/" className="nav-link">Home</Link></li>
+        <li className="nav-item"><Link to="/login" className="nav-link">LogIn</Link></li>
+      </ul>
+      <ul className="nav-links-left">
+        <li className="nav-item"><Link to="/login" className="nav-link">SignUp</Link></li>
       </ul>
     </nav>
   );

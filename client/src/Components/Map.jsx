@@ -13,7 +13,7 @@ const Map = ({ locations }) => {
   };
 
   return (
-    <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
+    <LoadScript googleMapsApiKey="https://maps.googleapis.com/maps/api/js?key=XXXXXXXXXX">
       <GoogleMap
         mapContainerStyle={mapStyles}
         zoom={13}
