@@ -42,3 +42,4 @@ const properties = [
 };
 
 export default PropertyDetail;
+
