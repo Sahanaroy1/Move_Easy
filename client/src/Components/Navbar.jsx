@@ -1,22 +1,76 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import logo from '../assets/Logo.png'; 
+import SignUpForm from './Components/SignupForm';
+import LoginForm from './Components/LoginForm';
 import './Navbar.css'; 
 
+import Auth from '../utils/auth';
+
 const Navbar = () => {
+
+  //const [showModal, setShowModal] = useState(false);
   return (
-    <nav className="navbar">
-      <ul className="nav-links-left">
-        <li className="nav-item"><Link to="/" className="nav-link">Home</Link></li>
-      </ul>
-      <div className="logo-container">
+    <>
+      <Navbar bg='dark' variant='dark' expand='lg'>
+        <Container fluid>
+        <div className="logo-container">
         <img src={logo} alt="Logo" className="logo" />
         
       </div>
-      <ul className="nav-links-right">
-        <li className="nav-item"><Link to="/properties" className="nav-link">Properties</Link></li>
-      </ul>
-    </nav>
+          <Navbar.Toggle aria-controls='navbar' />
+          <Navbar.Collapse id='navbar' className='d-flex flex-row-reverse'>
+            <Nav className='ml-auto d-flex'>
+              <Nav.Link as={Link} to='/'>
+                Search For Books
+              </Nav.Link>
+              {/* if user is logged in show saved books and logout */}
+              {Auth.loggedIn() ? (
+                <>
+               
+                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
+                </>
+              ) : (
+                <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      {/* set modal data up */}
+      <Modal
+        size='lg'
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        aria-labelledby='signup-modal'>
+        {/* tab container to do either signup or login component */}
+        <Tab.Container defaultActiveKey='login'>
+          <Modal.Header closeButton>
+            <Modal.Title id='signup-modal'>
+              <Nav variant='pills'>
+                <Nav.Item>
+                  <Nav.Link eventKey='login'>Login</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey='signup'>Sign Up</Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Tab.Content>
+              <Tab.Pane eventKey='login'>
+                <LoginForm handleModalClose={() => setShowModal(false)} />
+              </Tab.Pane>
+              <Tab.Pane eventKey='signup'>
+                <SignUpForm handleModalClose={() => setShowModal(false)} />
+              </Tab.Pane>
+            </Tab.Content>
+          </Modal.Body>
+        </Tab.Container>
+      </Modal>
+    </>
   );
 };
 
