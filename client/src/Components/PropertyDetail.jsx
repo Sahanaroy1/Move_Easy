@@ -8,10 +8,29 @@ const properties = [
     
   ];
   
+// 
 
-const PropertyDetail = () => {
-  const { id } = useParams();
-  const property = properties.find(p => p.id === parseInt(id));
+  const PropertyDetail = () => {
+    const [property, setProperty] = useState(null);
+    const { propertyId } = useParams();
+  
+    useEffect(() => {
+      const fetchProperty = async () => {
+        try {
+          const response = await fetch(`/properties/${propertyId}`);
+          const data = await response.json();
+          setProperty(data);
+        } catch (error) {
+          console.error('Error fetching property:', error);
+        }
+      };
+  
+      fetchProperty();
+    }, [propertyId]);
+  
+    if (!property) {
+      return <div>getting details...</div>;
+    }
 
   return (
     <div>
