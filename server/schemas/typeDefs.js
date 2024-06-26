@@ -1,25 +1,38 @@
-const typeDefs = `
-  type User {
+const { gql } = require('apollo-server');
+
+const typeDefs = gql`
+  interface User {
     _id: ID
     username: String
     email: String
     password: String
-    thoughts: [Thought]!
+    type: String
   }
 
-  type Thought {
+  type Agent implements User {
     _id: ID
-    thoughtText: String
-    thoughtAuthor: String
-    createdAt: String
-    comments: [Comment]!
+    username: String
+    email: String
+    password: String
+    type: String
+    properties: [Property]!
   }
 
-  type Comment {
+  type Customer implements User {
     _id: ID
-    commentText: String
-    commentAuthor: String
+    username: String
+    email: String
+    password: String
+    type: String
+  }
+
+  type Property {
+    _id: ID
+    address: String
+    price: Float
+    description: String
     createdAt: String
+    agent: Agent
   }
 
   type Auth {
@@ -29,22 +42,17 @@ const typeDefs = `
 
   type Query {
     users: [User]
-    user(username: String!): User
-    thoughts(username: String): [Thought]
-    thought(thoughtId: ID!): Thought
+    user(email: String!): User
+    properties: [Property]
+    property(propertyId: ID!): Property
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!, type: String!): Auth
     login(email: String!, password: String!): Auth
-    addThought(thoughtText: String!, thoughtAuthor: String!): Thought
-    addComment(
-      thoughtId: ID!
-      commentText: String!
-      commentAuthor: String!
-    ): Thought
-    removeThought(thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Thought
+    addProperty(email: String!, address: String!, price: Float!, description: String!): Property
+    editProperty(propertyId: ID!, address: String, price: Float, description: String): Property
+    removeProperty(propertyId: ID!): Property
   }
 `;
 

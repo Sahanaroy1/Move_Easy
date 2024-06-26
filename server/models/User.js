@@ -19,10 +19,15 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  thoughts: [
+  type: {
+    type: String,
+    enum: ['AGENT', 'CUSTOMER'],
+    required: true,
+  },
+  properties: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Thought',
+      ref: 'Property',
     },
   ],
 });
