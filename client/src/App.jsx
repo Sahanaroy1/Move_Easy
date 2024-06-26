@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar';
-import Login from './Components/LoginForm';
+import Login from './pages/Login';
 import Signup from './Components/SignupForm';
 import Home from './pages/Home';
 import Properties from './pages/Properties';
@@ -14,6 +14,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/properties" element={<Properties />} />
         <Route path="/properties/:id" element={<Property />} />
       </Routes>
