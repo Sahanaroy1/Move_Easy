@@ -13,8 +13,13 @@ const Navbar = () => {
         <img src={logo} alt="Logo" className="logo" />
         
       </div>
+      
+      
       <ul className="nav-links-right">
         <li className="nav-item"><Link to="/properties" className="nav-link">Properties</Link></li>
+      </ul>
+      <ul className="nav-links-left">
+        <li className="nav-item"><Link to="/" className="nav-link">Home</Link></li>
       </ul>
     </nav>
   );
