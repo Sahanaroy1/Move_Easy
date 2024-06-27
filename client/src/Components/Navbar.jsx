@@ -2,8 +2,9 @@ import React from 'react';
 import { Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth'; // Assuming Auth module handles authentication
-import './Navbar.css'; 
+import '../styles/Navbar.css';
 import logo from '../assets/Logo.png'; 
+
 
 function Navigation() {
   const isLoggedIn = Auth.loggedIn();
@@ -15,7 +16,11 @@ function Navigation() {
 
   return (
     <Nav className="navbar">
+      <div>
+      <img src={logo} className="main-image"/>
+      </div>
       <div className="logo-container">
+      
         <h1>Move Easy</h1>
         <img src={logo} className="logo"/>
       </div>
