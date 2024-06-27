@@ -11,16 +11,10 @@
 .logo-container {
   flex-shrink: 0;
 }
-.logo{
-  height: 60px;
-}
 
 .logo-container{
   font-family: 'roberto', sans-serif;
   color: #F2921D;
-  height: 50px;
-  display: flex;
-  align-items: center;
 
 }
 

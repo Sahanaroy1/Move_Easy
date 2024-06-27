@@ -1,3 +1,24 @@
-.main-image {
-    width: 50%;
+.hero-image {
+    width: 100%;
+    height: auto;
+    /* position: absolute; */
+    /* z-index: 1; */
+    /* marg */
+}
+
+.homepageContainer{
+    position: relative;
+    width: 100%;
+    height: 100%; 
+    margin-bottom: 2%;
+    background-color: #21686936;
+}
+
+.welcomeText{
+    background-color: #216869bd;
+        color: white;
+        padding: 2%;
+        font-size: 25px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        text-align: center;
 }
