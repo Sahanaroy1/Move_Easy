@@ -1,89 +1,61 @@
+import React, { useState } from 'react';
+import { Form, Button } from 'react-bootstrap';
+import Auth from '../utils/auth'; // Assuming Auth module handles authentication
 
-import { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
-import { useMutation } from '@apollo/client';
+function LoginForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-import Auth from '../utils/auth';
-//import { LOGIN_USER } from '../utils/mutation';
-
-const LoginForm = () => {
-  const [formState, setFormState] = useState({ email: '', password: '' });
-  const [login, { error, data }] = useMutation(LOGIN_USER);
-  const [validated] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    
-    setFormState({ 
-      ...formState, 
-      [name]: value });
-  };
-
-  const handleFormSubmit = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
     try {
-      const { data } = await login({
-        variables: { ...formState },
-      })
-
-      Auth.login(data.login.token);
-    } catch (err) {
-      console.error(err);
-      setShowAlert(true);
+      const loggedIn = await Auth.login(email, password);
+      if (loggedIn) {
+        history.push('/'); // Redirect to home page or another page after login
+      } else {
+        alert('Login failed. Please check your credentials and try again.');
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      alert('An error occurred. Please try again later.');
     }
-
-    setFormState({
-      email: '',
-      password: '',
-    });
   };
 
   return (
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-          Something went wrong with your login credentials!
-        </Alert>
-        <Form.Group className='mb-3'>
-          <Form.Label htmlFor='email'>Email</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Your email'
-            name='email'
-            onChange={handleInputChange}
-            value={formState.email}
-            required
-          />
-          <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
-        </Form.Group>
+    <form onSubmit={handleSubmit} className="login-form">
+    <h1>Login</h1>
+    <div className="form-group">
+      <label htmlFor="formEmail">Email address</label>
+      <input
+        type="email"
+        id="formEmail"
+        className="form-control"
+        placeholder="Enter email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+    </div>
 
-        <Form.Group className='mb-3'>
-          <Form.Label htmlFor='password'>Password</Form.Label>
-          <Form.Control
-            type='password'
-            placeholder='Your password'
-            name='password'
-            onChange={handleInputChange}
-            value={formState.password}
-            required
-          />
-          <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
-        </Form.Group>
-        <Button
-          disabled={!(formState.email && formState.password)}
-          type='submit'
-          variant='success'>
-          Submit
-        </Button>
-      </Form>
-  );
-};
+    <div className="form-group">
+      <label htmlFor="formPassword">Password</label>
+      <input
+        type="password"
+        id="formPassword"
+        className="form-control"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+      />
+    </div>
+
+    <button type="submit" className="btn btn-primary">
+      Login
+    </button>
+  </form>
+);
+}
 
 export default LoginForm;

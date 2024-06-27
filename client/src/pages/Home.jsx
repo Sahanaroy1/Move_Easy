@@ -1,11 +1,11 @@
 import React from 'react';
-import mainImage from '../assets/main_background.jpeg';
-import './Home.css';
+import logo from '../assets/Logo.png'; 
+import '../styles/Home.css';
 
 const Home = () => {
   return (
     <div>
-      <img src={mainImage} className="main-image"/>
+      <img src={logo} className="main-image"/>
     </div>
   );
 };

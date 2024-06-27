@@ -1,32 +1,39 @@
 import React from 'react';
+import { Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import logo from '../assets/Logo.png'; 
+import Auth from '../utils/auth'; // Assuming Auth module handles authentication
 import './Navbar.css'; 
+ 
+function Navigation() {
 
-const Navbar = () => {
-  
   return (
-    <nav className="navbar">
-      <ul className="nav-links-left">
-        <li className="nav-item"><Link to="/" className="nav-link">Home</Link></li>
-      </ul>
+    <Nav className="navbar">
       <div className="logo-container">
-        <img src={logo} alt="Logo" className="logo" />
-        
+        <h1>Move Easy</h1>
       </div>
-      
-      
       <ul className="nav-links-right">
-        <li className="nav-item"><Link to="/properties" className="nav-link">Properties</Link></li>
+        <li className="nav-item">
+          <Nav.Link as={Link} to='/properties' className="nav-link">Properties</Nav.Link>
+        </li>
+        {Auth.loggedIn() ? (
+          <li className="nav-item">
+            <Nav.Link onClick={Auth.logout} className="nav-link">Logout</Nav.Link>
+          </li>
+        ) : (
+          <>
+            <li className="nav-item">
+              <Nav.Link as={Link} to='/login' className="nav-link">Login</Nav.Link>
+            </li>
+            <li className="nav-item">
+              <Nav.Link as={Link} to='/signup' className="nav-link">Sign Up</Nav.Link>
+            </li>
+          </>
+        )}
       </ul>
-      <ul className="nav-links-left">
-        <li className="nav-item"><Link to="/login" className="nav-link">LogIn</Link></li>
-      </ul>
-      <ul className="nav-links-left">
-        <li className="nav-item"><Link to="/login" className="nav-link">SignUp</Link></li>
-      </ul>
-    </nav>
+    </Nav>
   );
-};
+}
 
-export default Navbar;
+
+
+export default Navigation;

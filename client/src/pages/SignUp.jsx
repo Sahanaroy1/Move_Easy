@@ -1,14 +1,14 @@
 import React from 'react';
-import LoginForm from '../Components/LoginForm';
+import SignupForm from '../Components/SignupForm';
 import mainImage from '../assets/main_background.jpeg';
 import '../styles/LoginSignup.css';
 
-const Login = () => {
+const Signup = () => {
   return (
     <div>
-      <LoginForm />
+      <SignupForm />
     </div>
   );
 };
 
-export default Login;
+export default Signup;
