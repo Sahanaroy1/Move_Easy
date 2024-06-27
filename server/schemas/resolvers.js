@@ -16,6 +16,20 @@ const resolvers = {
   Query: {
     users: async () => User.find({}).populate('properties'),
     user: async (_, { email }) => User.findOne({ email }).populate('properties'),
+    agentProperties: async (_, __, context) => {
+      // Ensure the user is authenticated as an agent
+      console.log(context.user);
+      if (!context.user || context.user.type !== 'AGENT') {
+        throw new AuthenticationError('Unauthorized access');
+      }
+
+      // Fetch properties belonging to the logged-in agent
+      const agentId = context.user._id; // Assuming user._id represents the agent's ID
+      const properties = await Property.find({ agent: agentId });
+
+      return properties;
+    },
+  
     properties: async () => Property.find({}),
     property: async (_, { propertyId }) => Property.findById(propertyId),
   },
@@ -24,7 +38,6 @@ const resolvers = {
       const existingUser = await User.findOne({ email });
       if (existingUser) throw new AuthenticationError('User already exists');
 
-      
       const user = new User({ username, email, password, type });
 
       await user.save();
@@ -45,50 +58,55 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addProperty: async (_, { email, address, price, description }) => {
-      // Find the user by email to check if they are an agent
+    addProperty: async (_, { email, address, price, description }, context) => {
       const user = await User.findOne({ email });
       if (!user || user.type !== 'AGENT') {
         throw new AuthenticationError('Only agents can add properties');
       }
 
-      // Create a new property document
       const property = new Property({
         address,
         price,
         description,
         createdAt: new Date().toISOString(),
-        agent: user._id, // Assign the agent ID to the property
+        agent: user._id,
       });
 
-      // Save the property to the database
       await property.save();
 
-      // Update the user's properties array
       user.properties.push(property);
       await user.save();
 
       return property;
     },
-    editProperty: async (_, { propertyId, address, price, description }) => {
+    editProperty: async (_, { propertyId, address, price, description }, context) => {
       const property = await Property.findById(propertyId);
       if (!property) throw new Error('Property not found');
+
+      if (context.user._id.toString() !== property.agent.toString()) {
+        throw new AuthenticationError('You do not have permission to edit this property');
+      }
 
       if (address) property.address = address;
       if (price) property.price = price;
       if (description) property.description = description;
+
       await property.save();
 
       return property;
     },
-    removeProperty: async (_, { propertyId }) => {
+    removeProperty: async (_, { propertyId }, context) => {
       const property = await Property.findById(propertyId);
       if (!property) throw new Error('Property not found');
 
+      if (context.user._id.toString() !== property.agent.toString()) {
+        throw new AuthenticationError('You do not have permission to remove this property');
+      }
+
       await Property.findByIdAndRemove(propertyId);
       return property;
-    }
-  }
+    },
+  },
 };
 
 module.exports = resolvers;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom';
 import AppNavbar from './Components/Navbar';
 import Login from './pages/Login';
@@ -8,13 +8,26 @@ import Home from './pages/Home';
 import Properties from './pages/Properties';
 import Property from './pages/Property';
 import Footer from './Components/Footer';
+import Agent from './pages/Agents';
 
-
-
+import { setContext } from "@apollo/client/link/context";
+const httpLink = createHttpLink({
+  uri: "/graphql",
+});
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem("id_token");
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    },
+  };
+});
 const client = new ApolloClient({
-  uri: 'http://localhost:3001/graphql', // Replace with your GraphQL server URI
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
+
 
 const App = () => {
   return (
@@ -29,6 +42,8 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/properties" element={<Properties />} />
         <Route path="/properties/:id" element={<Property />} />
+        <Route path="/agents" element={<Agent />} />
+
       </Routes>
       <Footer />
       </>

@@ -1,11 +1,13 @@
 // use this to decode a token and get the user's information out of it
 //import decode from 'jwt-decode';
+import decode from 'jwt-decode';
 
 // create a new class to instantiate for a user
 class AuthService {
   // get user data
   getProfile() {
     return decode(this.getToken());
+
   }
 
   // check if user's logged in
@@ -44,6 +46,19 @@ class AuthService {
     // this will reload the page and reset the state of the application
     window.location.assign('/');
   }
+  getUserType() {
+    const token = this.getToken();
+    if (!token) return null;
+
+    try {
+      const decoded = decode(token);
+      return decoded.data.type;
+    } catch (err) {
+      console.error('Error decoding token:', err);
+      return null;
+    }
+  }
+ 
 }
 
 export default new AuthService();

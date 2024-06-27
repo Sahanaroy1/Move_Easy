@@ -45,6 +45,7 @@ const typeDefs = gql`
     user(email: String!): User
     properties: [Property]
     property(propertyId: ID!): Property
+    agentProperties: [Property]
   }
 
   type Mutation {

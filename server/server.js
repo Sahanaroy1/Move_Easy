@@ -16,6 +16,9 @@ app.use(cors());
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: ({ req }) => {
+    return authMiddleware({ req });
+  },
 });
 
 // Create a new instance of an Apollo server with the GraphQL schema
