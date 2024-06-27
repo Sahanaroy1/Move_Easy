@@ -17,12 +17,13 @@ function Navigation() {
   return (
     <Nav className="navbar">
       <div>
-      <img src={logo} className="main-image"/>
+      <a href='/'><img src={logo} className="main-image"/></a>
       </div>
       <div className="logo-container">
       
-        <h1>Move Easy</h1>
-        <img src={logo} className="logo"/>
+        <a href='/'><h1>Move Easy</h1></a>
+        
+
       </div>
       <ul className="nav-links-right">
         <li className="nav-item">
