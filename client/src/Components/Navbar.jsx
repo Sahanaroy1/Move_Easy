@@ -19,7 +19,7 @@ function Navigation() {
       <div className="logo-container">
       
         <h1>Move Easy</h1>
-        <img src={logo} className="logo"/>
+        
 
       </div>
       <ul className="nav-links-right">
