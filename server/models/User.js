@@ -23,6 +23,7 @@ const userSchema = new Schema({
     type: String,
     enum: ['AGENT', 'CUSTOMER'],
     required: true,
+    set: (value) => value.toUpperCase(),
   },
   properties: [
     {

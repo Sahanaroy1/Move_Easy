@@ -1,27 +1,57 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap'; // Assuming you are using Bootstrap for form styling
-import Auth from '../utils/auth'; // Assuming Auth module handles authentication
+import { ADD_USER } from '../utils/mutations';
+import { useMutation } from '@apollo/client';
+import Auth from '../utils/auth'; 
 
-function SignUpForm() {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [type, setType] = useState('Customer'); // Default type is Customer
+const SignUpForm = () => {
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    type: 'Customer', // Default type, can be changed in the form
+  });
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const [addUser, { loading, error }] = useMutation(ADD_USER, {
+    onError: (error) => {
+      if (error.graphQLErrors.length > 0) {
+        console.error('GraphQL Error:', error.graphQLErrors);
+      }
+      if (error.networkError) {
+        console.error('Network Error:', error.networkError);
+      }
+    },
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     try {
-      // Perform sign up logic, e.g., using Auth.signUp(username, email, password, type)
-      const user = await Auth.signUp(username, email, password, type);
-      if (user) {
-        history.push('/'); // Redirect to home page or another page after successful sign-up
-      } else {
-        alert('Sign-up failed. Please try again.');
-      }
+      const { data } = await addUser({
+        variables: {
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+          type: formData.type,
+        },
+      });
+
+
+      // Clear form fields after successful sign-up
+      setFormData({
+        username: '',
+        email: '',
+        password: '',
+        type: 'Customer',
+      });
+      const { token, user } = data.addUser;
+      Auth.login(token);
     } catch (error) {
       console.error('Error signing up:', error);
-      alert('An error occurred. Please try again later.');
     }
   };
 
@@ -33,10 +63,11 @@ function SignUpForm() {
         <input
           type="text"
           id="formUsername"
+          name="username" // Ensure name attribute matches state key
           className="form-control"
           placeholder="Enter username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={formData.username}
+          onChange={handleChange}
           required
         />
       </div>
@@ -46,10 +77,11 @@ function SignUpForm() {
         <input
           type="email"
           id="formEmail"
+          name="email" // Ensure name attribute matches state key
           className="form-control"
           placeholder="Enter email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={formData.email}
+          onChange={handleChange}
           required
         />
       </div>
@@ -59,10 +91,11 @@ function SignUpForm() {
         <input
           type="password"
           id="formPassword"
+          name="password" // Ensure name attribute matches state key
           className="form-control"
           placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={formData.password}
+          onChange={handleChange}
           required
         />
       </div>
@@ -71,9 +104,10 @@ function SignUpForm() {
         <label htmlFor="formType">User Type</label>
         <select
           id="formType"
+          name="type" // Ensure name attribute matches state key
           className="form-control"
-          value={type}
-          onChange={(e) => setType(e.target.value)}
+          value={formData.type}
+          onChange={handleChange}
           required
         >
           <option value="Customer">Customer</option>

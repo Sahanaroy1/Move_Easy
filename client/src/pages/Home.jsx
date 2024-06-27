@@ -5,7 +5,6 @@ import '../styles/Home.css';
 const Home = () => {
   return (
     <div>
-      <img src={logo} className="main-image"/>
     </div>
   );
 };

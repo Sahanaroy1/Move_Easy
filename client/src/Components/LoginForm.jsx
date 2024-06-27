@@ -1,61 +1,90 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
-import Auth from '../utils/auth'; // Assuming Auth module handles authentication
+import { Form, Button } from 'react-bootstrap'; // Assuming you are using Bootstrap for form styling
+import { LOGIN_USER } from '../utils/mutations'; // Assuming you have a LOGIN_USER query defined
+import { useMutation } from '@apollo/client';
+import Auth from '../utils/auth'; 
+const LoginForm = () => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
 
-function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [loginUser, { loading, error }] = useMutation(LOGIN_USER, {
+    onError: (error) => {
+      console.error('Error logging in:', error);
+    },
+  });
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     try {
-      const loggedIn = await Auth.login(email, password);
-      if (loggedIn) {
-        history.push('/'); // Redirect to home page or another page after login
-      } else {
-        alert('Login failed. Please check your credentials and try again.');
-      }
+      const { data } = await loginUser({
+        variables: {
+          email: formData.email,
+          password: formData.password
+        },
+      });
+
+      console.log('User logged in:', data);
+
+      // Optionally, you can redirect or handle login success here
+
+      // Clear form fields after successful login
+      setFormData({
+        email: '',
+        password: ''
+      });
+      const { token, user } = data.login;
+
+      Auth.login(token);
+
     } catch (error) {
       console.error('Error logging in:', error);
-      alert('An error occurred. Please try again later.');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="login-form">
-    <h1>Login</h1>
-    <div className="form-group">
-      <label htmlFor="formEmail">Email address</label>
-      <input
-        type="email"
-        id="formEmail"
-        className="form-control"
-        placeholder="Enter email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-    </div>
+    <Form onSubmit={handleSubmit} className="login-form">
+      <h1>Login</h1>
+      <div className="form-group">
+        <label htmlFor="formEmail">Email address</label>
+        <input
+          type="email"
+          id="formEmail"
+          name="email"
+          className="form-control"
+          placeholder="Enter email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-    <div className="form-group">
-      <label htmlFor="formPassword">Password</label>
-      <input
-        type="password"
-        id="formPassword"
-        className="form-control"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-    </div>
+      <div className="form-group">
+        <label htmlFor="formPassword">Password</label>
+        <input
+          type="password"
+          id="formPassword"
+          name="password"
+          className="form-control"
+          placeholder="Password"
+          value={formData.password}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-    <button type="submit" className="btn btn-primary">
-      Login
-    </button>
-  </form>
-);
+      <Button variant="primary" type="submit" className="btn btn-primary">
+        Login
+      </Button>
+    </Form>
+  );
 }
 
 export default LoginForm;

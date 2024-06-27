@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom';
 import AppNavbar from './Components/Navbar';
 import Login from './pages/Login';
 import Signup from './pages/SignUp';
@@ -8,9 +9,19 @@ import Properties from './pages/Properties';
 import Property from './pages/Property';
 import Footer from './Components/Footer';
 
+
+
+const client = new ApolloClient({
+  uri: 'http://localhost:3001/graphql', // Replace with your GraphQL server URI
+  cache: new InMemoryCache(),
+});
+
 const App = () => {
   return (
-    <Router>
+    <ApolloProvider client={client}>
+      <Router>
+
+        <>
       <AppNavbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -20,7 +31,9 @@ const App = () => {
         <Route path="/properties/:id" element={<Property />} />
       </Routes>
       <Footer />
-    </Router>
+      </>
+      </Router>
+   </ApolloProvider>
   );
 };
 
