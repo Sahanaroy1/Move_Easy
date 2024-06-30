@@ -1,0 +1,73 @@
+.button{
+background: #F2921D;
+border: none;
+}
+.button:hover{
+background-color: #ffa200;
+}
+h1{
+    text-align: center;
+    color: #F2921D;
+
+}
+h2{
+    color: #F2921D;
+    margin-top: 20px;
+}
+.property-list {
+max-width: 1200px;
+margin: 0 auto;
+padding: 20px;
+}
+
+.property-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+grid-gap: 20px;
+}
+
+.property-card {
+position: relative;
+overflow: hidden;
+background-color: #ffa200;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+transition: transform 0.3s ease;
+}
+
+.property-card:hover {
+transform: translateY(-5px);
+}
+
+.property-image {
+width: 100%;
+height: auto;
+border-radius: 8px;
+}
+
+.property-details {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+padding: 20px;
+background-color: rgba(0, 0, 0, 0.8);
+color: #fff;
+transform: translateY(100%);
+transition: transform 0.3s ease;
+}
+
+.property-card:hover .property-details {
+transform: translateY(0);
+}
+
+.additional-info {
+display: none;
+}
+
+.property-card:hover .additional-info {
+display: block;
+margin-top: 10px;
+}

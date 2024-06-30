@@ -18,7 +18,7 @@ const resolvers = {
     user: async (_, { email }) => User.findOne({ email }).populate('properties'),
     agentProperties: async (_, __, context) => {
       // Ensure the user is authenticated as an agent
-      console.log(context.user);
+      console.log('hello', context.user);
       if (!context.user || context.user.type !== 'AGENT') {
         throw new AuthenticationError('Unauthorized access');
       }
@@ -58,8 +58,8 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addProperty: async (_, { email, address, price, description }, context) => {
-      const user = await User.findOne({ email });
+    addProperty: async (_, { address, price, description }, context) => {
+      const user = await User.findOne({ email: context.user.email });
       if (!user || user.type !== 'AGENT') {
         throw new AuthenticationError('Only agents can add properties');
       }
@@ -78,6 +78,7 @@ const resolvers = {
       await user.save();
 
       return property;
+      
     },
     editProperty: async (_, { propertyId, address, price, description }, context) => {
       const property = await Property.findById(propertyId);

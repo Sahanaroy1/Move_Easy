@@ -25,3 +25,14 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_PROPERTY = gql`
+  mutation addProperty($address: String!, $price: Float!, $description: String!) {
+    addProperty(address: $address, price: $price, description: $description) {
+      _id
+      address
+      price
+      description
+    }
+  }
+`;
