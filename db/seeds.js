@@ -135,3 +135,4 @@ seed.run({
   data: propertiesData,
   columns: propertiesTable,
 });
+
