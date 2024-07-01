@@ -27,12 +27,13 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_PROPERTY = gql`
-  mutation addProperty($address: String!, $price: Float!, $description: String!) {
-    addProperty(address: $address, price: $price, description: $description) {
+  mutation addProperty($address: String!, $price: Float!, $description: String!, $images: [String]) {
+    addProperty(address: $address, price: $price, description: $description, images: $images) {
       _id
       address
       price
       description
+      images
     }
   }
 `;

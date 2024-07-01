@@ -13,13 +13,18 @@ const propertySchema = new Schema({
     type: String,
   },
   createdAt: {
-    type: String,
+    type: Date,
+    default: Date.now,
     required: true,
   },
   agent: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true,
+  },
+  images: {
+    type: [String], // Array of image URLs
+    default: [],
   },
 });
 

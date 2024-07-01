@@ -1,73 +1,75 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Search from './Search';
-import Map from './Map'; 
+import React, { useState, useEffect } from 'react';
+import { useQuery } from '@apollo/client';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { GET_PROPERTIES } from '../utils/queries';
+import '../styles/Properties.css';
 
-const initialProperties = [
-  { 
-    id: 1, 
-    name: 'Property 1', 
-    description: 'Description of Property 1', 
-    price: 250000, 
-    area: 1200, 
-    image: 'property1.jpg', 
-    imageDescription: 'Image of Property 1',
-    lat: 40.712776, 
-    lng: -74.005974 
-  },
-  { 
-    id: 2, 
-    name: 'Property 2', 
-    description: 'Description of Property 2', 
-    price: 300000, 
-    area: 1500, 
-    image: 'property2.jpg', 
-    imageDescription: 'Image of Property 2',
-    lat: 34.052235, 
-    lng: -118.243683 
-  },
-  // Add more properties as needed
-];
+const Properties = () => {
+  const { loading, error, data } = useQuery(GET_PROPERTIES);
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
+  const [filteredProperties, setFilteredProperties] = useState([]);
+  const [selectedProperty, setSelectedProperty] = useState(null);
 
-const PropertyList = () => {
-  const [properties, setProperties] = useState(initialProperties);
-  const [selectedProperty, setSelectedProperty] = useState(initialProperties[0]); // Default selected property for map
+  useEffect(() => {
+    if (data) {
+      setFilteredProperties(data.properties);
+      setSelectedProperty(data.properties[0]);
+    }
+  }, [data]);
 
-  const handleSearch = (searchCriteria) => {
-    const filteredProperties = initialProperties.filter(property => {
-      const meetsPriceCriteria = (!searchCriteria.minPrice || property.price >= searchCriteria.minPrice) &&
-                                (!searchCriteria.maxPrice || property.price <= searchCriteria.maxPrice);
-      const meetsAreaCriteria = (!searchCriteria.minArea || property.area >= searchCriteria.minArea) &&
-                               (!searchCriteria.maxArea || property.area <= searchCriteria.maxArea);
-      return meetsPriceCriteria && meetsAreaCriteria;
+  const handleFilter = () => {
+    const filtered = data.properties.filter(property => {
+      const meetsMinPrice = minPrice ? property.price >= parseFloat(minPrice) : true;
+      const meetsMaxPrice = maxPrice ? property.price <= parseFloat(maxPrice) : true;
+      return meetsMinPrice && meetsMaxPrice;
     });
-
-    setProperties(filteredProperties);
-    setSelectedProperty(filteredProperties[0]); // Set the first filtered property as selected for map
+    setFilteredProperties(filtered);
+    setSelectedProperty(filtered[0]);
   };
 
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
   return (
-    <div className="property-list-container">
-      <div className="property-list">
-        <Search onSearch={handleSearch} />
-        <h2>Properties</h2>
-        <div className="property-container">
-          {properties.map(property => (
-            <div key={property.id} className="property" onClick={() => setSelectedProperty(property)}>
-              <h3><Link to={`/properties/${property.id}`}>{property.name}</Link></h3>
-              
-              <p>{property.description}</p>
-              <p>Price: ${property.price.toLocaleString()}</p>
-              <p>Area: {property.area} sqft</p>
-            </div>
+    <div className="properties-container">
+      <div className="properties-list">
+        <div className="filter-container">
+          <label>
+            Min Price:
+            <input 
+              type="number" 
+              value={minPrice} 
+              onChange={(e) => setMinPrice(e.target.value)} 
+            />
+          </label>
+          <label>
+            Max Price:
+            <input 
+              type="number" 
+              value={maxPrice} 
+              onChange={(e) => setMaxPrice(e.target.value)} 
+            />
+          </label>
+          <button onClick={handleFilter}>Filter</button>
+        </div>
+        <div className="properties-grid">
+          {filteredProperties.map(property => (
+            <Link key={property._id} to={`/properties/${property._id}`} className="property-link">
+              <div className="property-cards">
+                <img src={property.images.length > 0 ? property.images[0] : 'placeholder.jpg'} alt={`Property`} className="property-images" />
+                <strong>Address:</strong> {property.address}<br />
+                <strong>Price:</strong> ${property.price}<br />
+              </div>
+            </Link>
           ))}
         </div>
       </div>
       <div className="map-container">
-        <Map locations={[selectedProperty]} />
+        {/* Include your map component here */}
       </div>
     </div>
   );
 };
 
-export default PropertyList;
+export default Properties;

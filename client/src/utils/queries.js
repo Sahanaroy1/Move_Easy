@@ -8,6 +8,18 @@ export const AGENT_PROPERTIES = gql`
       address
       price
       description
+      images
+    }
+  }
+`;
+export const GET_PROPERTIES = gql`
+  query GetProperties {
+    properties {
+      _id
+      address
+      price
+      images
+      
     }
   }
 `;

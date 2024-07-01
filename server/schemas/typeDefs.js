@@ -33,6 +33,7 @@ const typeDefs = gql`
     description: String
     createdAt: String
     agent: Agent
+    images: [String] # Array of image URLs
   }
 
   type Auth {
@@ -51,8 +52,8 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!, type: String!): Auth
     login(email: String!, password: String!): Auth
-    addProperty(address: String!, price: Float!, description: String!): Property
-    editProperty(propertyId: ID!, address: String, price: Float, description: String): Property
+    addProperty(address: String!, price: Float!, description: String!, images: [String]): Property
+    editProperty(propertyId: ID!, address: String, price: Float, description: String, images: [String]): Property
     removeProperty(propertyId: ID!): Property
   }
 `;

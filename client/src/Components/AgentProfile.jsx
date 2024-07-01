@@ -5,6 +5,7 @@ import { ADD_PROPERTY } from '../utils/mutations';
 import { Button, Modal, Form } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/Agents.css';
 
 const AgentDashboard = () => {
   const { loading, error, data, refetch } = useQuery(AGENT_PROPERTIES);
@@ -14,6 +15,7 @@ const AgentDashboard = () => {
     address: '',
     price: '',
     description: '',
+    images: [], // Initialize images as an empty array
   });
 
   const handleChange = (e) => {
@@ -33,12 +35,13 @@ const AgentDashboard = () => {
           address: propertyDetails.address,
           price: parseFloat(propertyDetails.price), // Convert price to float
           description: propertyDetails.description,
+          images: propertyDetails.images, // Pass images array to mutation
         },
       });
       refetch();
 
       setShowModal(false);
-      setPropertyDetails({ address: '', price: '', description: '' }); // Reset form
+      setPropertyDetails({ address: '', price: '', description: '', images: [] }); // Reset form
     } catch (e) {
       console.error(e);
     }
@@ -46,33 +49,32 @@ const AgentDashboard = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
-
   const { agentProperties } = data;
+  console.log(agentProperties);
+
   return (
     <div>
-        
-        <div className="property-list">
-            <h1>Agent Dashboard</h1>
-            <Button variant="primary" onClick={() => setShowModal(true)} className='button'>
-            Add Property
-            </Button>
-            <h2>Your Properties:</h2>
-            <div className="property-grid">
-                {agentProperties.map(property => (
-                <div key={property._id} className="property-card">
-                    <img src={property.images} alt={`Property`} className="property-image" />
-                    <div className="property-details">
-                    <strong>Address:</strong> {property.address}<br />
-                    <div className="additional-info">
-                        <strong>Price:</strong> ${property.price}<br />
-                        <strong>Description:</strong> {property.description}
-                    </div>
-                    </div>
+      <div className="property-list">
+        <h1>Agent Dashboard</h1>
+        <Button variant="primary" onClick={() => setShowModal(true)} className='button'>
+          Add Property
+        </Button>
+        <h2>Your Properties:</h2>
+        <div className="property-grid">
+          {agentProperties.map(property => (
+            <div key={property._id} className="property-card">
+              <img src={property.images.length > 0 ? property.images[0] : 'placeholder.jpg'} alt={`Property`} className="property-image" />
+              <div className="property-details">
+                <strong>Address:</strong> {property.address}<br />
+                <div className="additional-info">
+                  <strong>Price:</strong> ${property.price}<br />
+                  <strong>Description:</strong> {property.description}
                 </div>
-                ))}
+              </div>
             </div>
-            </div>
-     
+          ))}
+        </div>
+      </div>
 
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
@@ -109,6 +111,15 @@ const AgentDashboard = () => {
                 value={propertyDetails.description}
                 onChange={handleChange}
                 required
+              />
+            </Form.Group>
+            <Form.Group controlId="formImages">
+              <Form.Label>Images (URLs, separated by commas)</Form.Label>
+              <Form.Control
+                type="text"
+                name="images"
+                value={propertyDetails.images.join(',')}
+                onChange={(e) => setPropertyDetails({ ...propertyDetails, images: e.target.value.split(',') })}
               />
             </Form.Group>
           </Form>

@@ -17,19 +17,13 @@ const resolvers = {
     users: async () => User.find({}).populate('properties'),
     user: async (_, { email }) => User.findOne({ email }).populate('properties'),
     agentProperties: async (_, __, context) => {
-      // Ensure the user is authenticated as an agent
-      console.log('hello', context.user);
       if (!context.user || context.user.type !== 'AGENT') {
         throw new AuthenticationError('Unauthorized access');
       }
-
-      // Fetch properties belonging to the logged-in agent
-      const agentId = context.user._id; // Assuming user._id represents the agent's ID
+      const agentId = context.user._id;
       const properties = await Property.find({ agent: agentId });
-
       return properties;
     },
-  
     properties: async () => Property.find({}),
     property: async (_, { propertyId }) => Property.findById(propertyId),
   },
@@ -39,7 +33,6 @@ const resolvers = {
       if (existingUser) throw new AuthenticationError('User already exists');
 
       const user = new User({ username, email, password, type });
-
       await user.save();
       const token = signToken(user);
       return { token, user };
@@ -50,7 +43,7 @@ const resolvers = {
         throw new AuthenticationError('Invalid credentials');
       }
 
-      const valid = await user.isCorrectPassword(password);
+      const valid = await bcrypt.compare(password, user.password);
       if (!valid) {
         throw new AuthenticationError('Invalid credentials');
       }
@@ -58,7 +51,7 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addProperty: async (_, { address, price, description }, context) => {
+    addProperty: async (_, { address, price, description, images }, context) => {
       const user = await User.findOne({ email: context.user.email });
       if (!user || user.type !== 'AGENT') {
         throw new AuthenticationError('Only agents can add properties');
@@ -70,6 +63,7 @@ const resolvers = {
         description,
         createdAt: new Date().toISOString(),
         agent: user._id,
+        images: images || [], // Ensure images are initialized as an empty array if not provided
       });
 
       await property.save();
@@ -78,9 +72,8 @@ const resolvers = {
       await user.save();
 
       return property;
-      
     },
-    editProperty: async (_, { propertyId, address, price, description }, context) => {
+    editProperty: async (_, { propertyId, address, price, description, images }, context) => {
       const property = await Property.findById(propertyId);
       if (!property) throw new Error('Property not found');
 
@@ -91,6 +84,7 @@ const resolvers = {
       if (address) property.address = address;
       if (price) property.price = price;
       if (description) property.description = description;
+      if (images) property.images = images;
 
       await property.save();
 
