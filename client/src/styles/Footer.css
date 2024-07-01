@@ -14,5 +14,8 @@
     font-family: 'roberto', sans-serif;;
     text-decoration: none;
   }
- 
+ .footer img {
+    height: 35px;
+    width: 35px;
+ }
   
