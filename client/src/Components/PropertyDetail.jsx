@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Map from './Map';
+import '../styles/PropertyDetail.css';
 
 const properties = [
     { id: 1, name: 'Property 1', description: 'Description of Property 1', price: 250000, area: 1200, lat: 40.712776, lng: -74.005974 },
@@ -26,8 +27,13 @@ const PropertyDetail = () => {
     }, [propertyId]);
 
     if (!property) {
-        return <div>getting details...</div>;
-    }
+        return <div>
+            <h2>Properties</h2>
+            <div className="property-details">
+                
+            </div>
+        </div>
+    };
 
     return (
         <div>
