@@ -37,16 +37,21 @@ img .logo{
   font-family: 'roberto', sans-serif;
 
 }
-a {
+.nav a {
   text-decoration: none;
   color: #F2921D;
   font-family: 'roberto', sans-serif;
   text-align: center;
 }
-.nav-link:hover {
+.nav .nav-link:hover {
   text-decoration: underline;
+  color: #ffa200;
 }
   
+.nav .nav-link:focus{
+  color: #ffa200;
+  font-weight: bold;
+}
   
   .property-container {
     display: flex;
