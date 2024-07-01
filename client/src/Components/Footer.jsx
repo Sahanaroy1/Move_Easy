@@ -1,12 +1,12 @@
 import React from 'react';
-import '../styles/Navbar.css';
+import '../styles/Footer.css';
 
 const Footer = () => {
   return (
-    <footer className="footer-logo">
-     
-      <p>&copy; 2024 Move Easy</p>
-    
+    <footer className="footer">
+      <div className="footer-content">
+        <p>@ MoveEasy2024</p>
+      </div>
     </footer>
   );
 };
