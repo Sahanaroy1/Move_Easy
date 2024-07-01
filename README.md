@@ -1,6 +1,6 @@
 ## Move_Easy
 
-# As our final project we are creating a real estate web application where people can look for houses to rent or busy. Agency or house owner can add their property for sale or rent. 
+* As our final project we are creating a real estate web application where people can look for houses to rent or busy. Agency or house owner can add their property for sale or rent. 
 
 # Technologies used:
 
