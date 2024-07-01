@@ -28,17 +28,22 @@ const PropertyDetail = () => {
 
     if (!property) {
         return <div>
-            <h2>Properties</h2>
-            <div className="property-details">
-                
-            </div>
+            <h2>Property</h2>
         </div>
     };
 
     return (
         <div>
             <h2>{property.name}</h2>
-            <p>{property.description}</p>
+            <div className="property-detail-container">
+                <div className="property-detail-left">
+                    <Image src={property.imageUrl} alt={property.name} />
+                    <p>{property.description}</p>
+                </div>
+                <div className="property-detail-right">
+                    <p>{property.description}</p>
+                </div>
+            </div>
             <Map locations={[property]} />
         </div>
     );
