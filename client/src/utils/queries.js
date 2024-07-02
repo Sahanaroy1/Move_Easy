@@ -24,6 +24,7 @@ export const GET_PROPERTIES = gql`
     city
     postcode
     price
+    description
     bedrooms
     propertyType
     latitude

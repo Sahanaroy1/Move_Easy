@@ -2,28 +2,120 @@
     width:70px;
     height: 70px;
 }
-.hero-image {
-    width: 100%;
-    height: 390px;
-    /* position: absolute; */
-    /* z-index: 1; */
-    /* marg */
-}
 
-.homepageContainer{
-    position: relative;
-    width: 100%;
-    height: 100%; 
-    margin-bottom: 2%;
-    margin-top: -20px;
-    background-color: #21686936;
-}
 
 .welcomeText{
-    background-color: #216869bd;
-        color: white;
+        color: #F2921D;
         padding: 2%;
-        font-size: 25px;
+        font-size: 30px;
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         text-align: center;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 }
+.featuredProperty-container {
+    display: flex;
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .featuredProperty-container:hover .featuredProperty-details {
+    background-color: #F2921D;
+  }
+  .featuredProperty-container:hover .featuredProperty-info {
+    color: white;
+  }
+  .featuredProperty-container:hover .featuredProperty-price {
+    color: white;
+  }
+  .featuredProperty-container:hover .featuredProperty-button {
+    background-color: white;
+    color: #F2921D;
+  }
+  .featuredProperty-details {
+    width: 50%; /* Half of the container width */
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensures content is vertically centered */
+  }
+  
+  .featuredProperty-info {
+    padding: 10px;
+  }
+  
+  .featuredProperty-image {
+    width: 50%; /* Half of the container width */
+    object-fit: cover;
+    height: 100%;
+  }
+  .featuredProperty-address {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .featuredProperty-price {
+    color: #F2921D;
+    font-size: 18px;
+  }
+  
+  .featuredProperty-description {
+    margin-top: 10px;
+  } 
+   .featuredProperty-button{
+    background-color: #F2921D;
+    border: none;
+    color: white;
+    height: 40px;
+    border-radius: 5px;
+}
+.featuredProperty-button:hover{
+    background-color: #ff8c00;
+}
+.featuredProperties h2{
+    text-align: center;
+}
+
+
+.features {
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .features h2 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .features-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .feature {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .feature:hover {
+    background-color: #F2921D;
+  }
+  .feature:hover h3{
+    color: white;
+  }
+  .feature h3 {
+    color: #F2921D;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .feature p {
+    color: #666666;
+    line-height: 1.5;
+  }
+  

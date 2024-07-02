@@ -96,7 +96,7 @@ const AgentDashboard = () => {
 
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Add Property</Modal.Title>
+          <Modal.Title className='modal-title'>Add Property</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -190,10 +190,10 @@ const AgentDashboard = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
+          <Button variant="secondary"  onClick={() => setShowModal(false)}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleAddProperty}>
+          <Button variant="primary" className='button' onClick={handleAddProperty}>
             Add Property
           </Button>
         </Modal.Footer>

@@ -14,6 +14,9 @@ h2{
     color: #F2921D;
     margin-top: 20px;
 }
+.modal-title{
+    color: #F2921D;
+}
 .property-list {
 max-width: 1200px;
 margin: 0 auto;

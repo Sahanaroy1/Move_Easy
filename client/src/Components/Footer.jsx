@@ -1,19 +1,21 @@
 import React from 'react';
 import '../styles/Footer.css';
-import facebook from '../assets/images/facebook.png'; 
-import insta from '../assets/images/insta.png';
-import youtube from '../assets/images/youtube.png';
-import tiktok from '../assets/images/tiktok.png';
+import { FaInstagram } from "react-icons/fa";
+import { FaYoutube } from "react-icons/fa";
+import { FaTiktok } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-content">
-        <img src={facebook}/>
-        <img src={insta}/>
-        <img src={youtube}/>
-        <img src={tiktok}/>
+        <div className='links'>
+          <p className='smLink'><FaInstagram/></p>
+          <p className='smLink'><FaYoutube/></p>        
+          <p className='smLink'><FaTiktok/></p>
+          <p className='smLink'><FaFacebook/></p>
+        </div>
         <p>@ MoveEasy2024</p>
       </div>
     </footer>
