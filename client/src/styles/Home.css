@@ -15,7 +15,12 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-}
+        background-image: url('../assets/images/photo1.jpg');
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black overlay */
+        background-blend-mode: overlay;
+        background-size: cover;
+        background-position: center;
+    }
 .featuredProperty-container {
     display: flex;
     background-color: #ffffff;
