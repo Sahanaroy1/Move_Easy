@@ -29,11 +29,17 @@ const typeDefs = gql`
   type Property {
     _id: ID
     address: String
+    city: String
+    postcode: String
     price: Float
     description: String
     createdAt: String
     agent: Agent
     images: [String] # Array of image URLs
+    latitude: Float
+    longitude: Float
+    bedrooms: Int
+    propertyType: String
   }
 
   type Auth {
@@ -52,8 +58,31 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!, type: String!): Auth
     login(email: String!, password: String!): Auth
-    addProperty(address: String!, price: Float!, description: String!, images: [String]): Property
-    editProperty(propertyId: ID!, address: String, price: Float, description: String, images: [String]): Property
+    addProperty(
+      address: String!, 
+      city: String!, 
+      postcode: String!, 
+      price: Float!, 
+      description: String!, 
+      images: [String], 
+      latitude: Float!, 
+      longitude: Float!, 
+      bedrooms: Int!,
+      propertyType: String!
+    ): Property
+    editProperty(
+      propertyId: ID!, 
+      address: String, 
+      city: String, 
+      postcode: String, 
+      price: Float, 
+      description: String, 
+      images: [String], 
+      latitude: Float!, 
+      longitude: Float!,
+      bedrooms: Int,
+      propertyType: String
+    ): Property
     removeProperty(propertyId: ID!): Property
   }
 `;

@@ -1,29 +1,50 @@
-import React from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import React, { useState, useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
-const Map = ({ locations }) => {
+const Map = ({ properties }) => {
+  const [mapCenter, setMapCenter] = useState({ lat: 54.7023545, lng: -3.2765753 });
+
+  useEffect(() => {
+    // Set the map center based on the first property's location
+    if (properties.length > 0) {
+      const firstProperty = properties[0];
+      console.log(firstProperty.latitude, firstProperty.longitude)
+      setMapCenter({
+        lat: firstProperty.latitude,
+        lng: firstProperty.longitude,
+      });
+    }
+  }, [properties]);
+
   const mapStyles = {
-    height: '100%',
+    height: '400px',
     width: '100%',
   };
 
-  const defaultCenter = {
-    lat: locations[0].lat,
-    lng: locations[0].lng,
-  };
-
   return (
-    <LoadScript googleMapsApiKey="https://maps.googleapis.com/maps/api/js?key=XXXXXXXXXX">
-      <GoogleMap
-        mapContainerStyle={mapStyles}
-        zoom={13}
-        center={defaultCenter}
-      >
-        {locations.map((location, index) => (
-          <Marker key={index} position={{ lat: location.lat, lng: location.lng }} />
+    <div style={{ height: '400px', width: '100%' }}>
+      <MapContainer center={mapCenter} zoom={5} style={mapStyles}>
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        {properties.map((property, index) => (
+          <Marker
+            key={index}
+            position={[parseFloat(property.latitude), parseFloat(property.longitude)]}
+          >
+            <Popup>
+              <div>
+                <h2>{property.address}<br/>{property.postcode}</h2>
+                <p>Price: ${property.price}</p>
+                <Link to={`/properties/${property._id}`}>view details</Link>
+              </div>
+            </Popup>
+          </Marker>
         ))}
-      </GoogleMap>
-    </LoadScript>
+      </MapContainer>
+    </div>
   );
 };
 

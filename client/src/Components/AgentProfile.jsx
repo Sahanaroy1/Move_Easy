@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { AGENT_PROPERTIES } from '../utils/queries';
 import { ADD_PROPERTY } from '../utils/mutations';
+import getCoordinatesFromAddress from '../utils/geocode';
 import { Button, Modal, Form } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,9 +14,13 @@ const AgentDashboard = () => {
   const [showModal, setShowModal] = useState(false);
   const [propertyDetails, setPropertyDetails] = useState({
     address: '',
+    city: '',
+    postcode: '',
     price: '',
     description: '',
     images: [], // Initialize images as an empty array
+    bedrooms: '',
+    propertyType: '',
   });
 
   const handleChange = (e) => {
@@ -29,19 +34,30 @@ const AgentDashboard = () => {
   const handleAddProperty = async () => {
     try {
       const email = Auth.getUserEmail(); // Get email from AuthService
+      const { address, city, postcode } = propertyDetails;
+
+      // Fetch coordinates based on address
+      const { lat, lon } = await getCoordinatesFromAddress(`${address}, ${city}, ${postcode}`);
+      console.log(lat, lon);
       await addProperty({
         variables: {
           email,
-          address: propertyDetails.address,
+          address,
+          city,
+          postcode,
           price: parseFloat(propertyDetails.price), // Convert price to float
           description: propertyDetails.description,
           images: propertyDetails.images, // Pass images array to mutation
+          latitude: lat,
+          longitude: lon,
+          bedrooms: parseInt(propertyDetails.bedrooms), // Convert bedrooms to int
+          propertyType: propertyDetails.propertyType,
         },
       });
       refetch();
 
       setShowModal(false);
-      setPropertyDetails({ address: '', price: '', description: '', images: [] }); // Reset form
+      setPropertyDetails({ address: '', city: '', postcode: '', price: '', description: '', images: [], bedrooms: '', propertyType: '' }); // Reset form
     } catch (e) {
       console.error(e);
     }
@@ -65,10 +81,12 @@ const AgentDashboard = () => {
             <div key={property._id} className="property-card">
               <img src={property.images.length > 0 ? property.images[0] : 'placeholder.jpg'} alt={`Property`} className="property-image" />
               <div className="property-details">
-                <strong>Address:</strong> {property.address}<br />
+                <strong>Address:</strong> {property.address}, {property.city}, {property.postcode}<br />
                 <div className="additional-info">
                   <strong>Price:</strong> ${property.price}<br />
-                  <strong>Description:</strong> {property.description}
+                  <strong>Description:</strong> {property.description}<br />
+                  <strong>Bedrooms:</strong> {property.bedrooms}<br />
+                  <strong>Type:</strong> {property.propertyType}
                 </div>
               </div>
             </div>
@@ -88,6 +106,26 @@ const AgentDashboard = () => {
                 type="text"
                 name="address"
                 value={propertyDetails.address}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="formCity">
+              <Form.Label>City</Form.Label>
+              <Form.Control
+                type="text"
+                name="city"
+                value={propertyDetails.city}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="formPostcode">
+              <Form.Label>Postcode</Form.Label>
+              <Form.Control
+                type="text"
+                name="postcode"
+                value={propertyDetails.postcode}
                 onChange={handleChange}
                 required
               />
@@ -121,6 +159,33 @@ const AgentDashboard = () => {
                 value={propertyDetails.images.join(',')}
                 onChange={(e) => setPropertyDetails({ ...propertyDetails, images: e.target.value.split(',') })}
               />
+            </Form.Group>
+            <Form.Group controlId="formBedrooms">
+              <Form.Label>Bedrooms</Form.Label>
+              <Form.Control
+                type="number"
+                name="bedrooms"
+                value={propertyDetails.bedrooms}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="formPropertyType">
+              <Form.Label>Property Type</Form.Label>
+              <Form.Control
+                as="select"
+                name="propertyType"
+                value={propertyDetails.propertyType}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Property Type</option>
+                <option value="Detached">Detached</option>
+                <option value="Semi-Detached">Semi-Detached</option>
+                <option value="Terraced">Terraced</option>
+                <option value="Bungalow">Bungalow</option>
+                <option value="Flat">Flat</option>
+              </Form.Control>
             </Form.Group>
           </Form>
         </Modal.Body>

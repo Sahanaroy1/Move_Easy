@@ -5,6 +5,14 @@ const propertySchema = new Schema({
     type: String,
     required: true,
   },
+  city: {
+    type: String,
+    required: true,
+  },
+  postcode: {
+    type: String,
+    required: true,
+  },
   price: {
     type: Number,
     required: true,
@@ -25,6 +33,23 @@ const propertySchema = new Schema({
   images: {
     type: [String], // Array of image URLs
     default: [],
+  },
+  latitude: {
+    type: Number,
+    required: true,
+  },
+  longitude: {
+    type: Number,
+    required: true,
+  },
+  bedrooms: {
+    type: Number,
+    required: true,
+  },
+  propertyType: {
+    type: String,
+    enum: ['Detached', 'Semi-Detached', 'Terraced', 'Bungalow', 'Flat'],
+    required: true,
   },
 });
 

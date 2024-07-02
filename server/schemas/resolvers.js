@@ -51,7 +51,22 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addProperty: async (_, { address, price, description, images }, context) => {
+    addProperty: async (
+      _,
+      {
+        address,
+        city,
+        postcode,
+        price,
+        description,
+        images,
+        latitude,
+        longitude,
+        bedrooms,
+        propertyType
+      },
+      context
+    ) => {
       const user = await User.findOne({ email: context.user.email });
       if (!user || user.type !== 'AGENT') {
         throw new AuthenticationError('Only agents can add properties');
@@ -59,11 +74,17 @@ const resolvers = {
 
       const property = new Property({
         address,
+        city,
+        postcode,
         price,
         description,
         createdAt: new Date().toISOString(),
         agent: user._id,
         images: images || [], // Ensure images are initialized as an empty array if not provided
+        latitude,
+        longitude,
+        bedrooms,
+        propertyType
       });
 
       await property.save();
@@ -73,7 +94,23 @@ const resolvers = {
 
       return property;
     },
-    editProperty: async (_, { propertyId, address, price, description, images }, context) => {
+    editProperty: async (
+      _,
+      {
+        propertyId,
+        address,
+        city,
+        postcode,
+        price,
+        description,
+        images,
+        latitude,
+        longitude,
+        bedrooms,
+        propertyType
+      },
+      context
+    ) => {
       const property = await Property.findById(propertyId);
       if (!property) throw new Error('Property not found');
 
@@ -82,9 +119,15 @@ const resolvers = {
       }
 
       if (address) property.address = address;
+      if (city) property.city = city;
+      if (postcode) property.postcode = postcode;
       if (price) property.price = price;
       if (description) property.description = description;
       if (images) property.images = images;
+      if (latitude) property.latitude = latitude;
+      if (longitude) property.longitude = longitude;
+      if (bedrooms) property.bedrooms = bedrooms;
+      if (propertyType) property.propertyType = propertyType;
 
       await property.save();
 

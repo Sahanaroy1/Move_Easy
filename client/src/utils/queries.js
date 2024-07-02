@@ -6,9 +6,13 @@ export const AGENT_PROPERTIES = gql`
     agentProperties {
       _id
       address
+      city
+      postcode
       price
       description
       images
+      bedrooms
+    propertyType
     }
   }
 `;
@@ -16,10 +20,16 @@ export const GET_PROPERTIES = gql`
   query GetProperties {
     properties {
       _id
-      address
-      price
-      images
-      
+    address
+    city
+    postcode
+    price
+    bedrooms
+    propertyType
+    latitude
+    longitude
+    images
+
     }
   }
 `;

@@ -27,13 +27,41 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_PROPERTY = gql`
-  mutation addProperty($address: String!, $price: Float!, $description: String!, $images: [String]) {
-    addProperty(address: $address, price: $price, description: $description, images: $images) {
+  mutation addProperty(
+    $address: String!, 
+    $city: String!, 
+    $postcode: String!, 
+    $price: Float!, 
+    $description: String!, 
+    $images: [String],
+    $latitude: Float!,
+    $longitude: Float!,
+    $bedrooms: Int!,
+    $propertyType: String!
+  ) {
+    addProperty(
+      address: $address, 
+      city: $city, 
+      postcode: $postcode, 
+      price: $price, 
+      description: $description, 
+      images: $images,
+      latitude: $latitude,
+      longitude: $longitude,
+      bedrooms: $bedrooms,
+      propertyType: $propertyType
+    ) {
       _id
       address
+      city
+      postcode
       price
       description
       images
+      latitude
+      longitude
+      bedrooms
+      propertyType
     }
   }
 `;
