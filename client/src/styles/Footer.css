@@ -1,0 +1,21 @@
+.footer {
+    background-color: #fff;;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    border-top: 3px solid #F2921D;
+  }
+  
+  .footer p {
+    margin: 0 10px;
+    color: #F2921D;
+    font-family: 'roberto', sans-serif;;
+    text-decoration: none;
+  }
+ .footer img {
+    height: 35px;
+    width: 35px;
+ }
+  
