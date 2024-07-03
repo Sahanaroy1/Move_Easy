@@ -1,7 +1,13 @@
 .button{
 background: #F2921D;
 border: none;
+margin-top: 30px;
+margin-right: 5px;
 }
+.delete{
+    border: none;
+    margin-top: 30px;
+    }
 .button:hover{
 background-color: #ffa200;
 }
@@ -44,8 +50,8 @@ transform: translateY(-5px);
 }
 
 .property-image {
-width: 100%;
-height: auto;
+width: 100%; /* Half of the container width */
+object-fit: cover;
 border-radius: 8px;
 }
 

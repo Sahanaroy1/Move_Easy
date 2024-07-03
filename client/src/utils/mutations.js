@@ -65,3 +65,52 @@ export const ADD_PROPERTY = gql`
     }
   }
 `;
+
+export const EDIT_PROPERTY = gql`
+  mutation editProperty(
+    $propertyId: ID!,
+    $address: String,
+    $city: String,
+    $postcode: String,
+    $price: Float,
+    $description: String,
+    $images: [String],
+    $latitude: Float!,
+    $longitude: Float!,
+    $bedrooms: Int,
+    $propertyType: String
+  ) {
+    editProperty(
+      propertyId: $propertyId,
+      address: $address,
+      city: $city,
+      postcode: $postcode,
+      price: $price,
+      description: $description,
+      images: $images,
+      latitude: $latitude,
+      longitude: $longitude,
+      bedrooms: $bedrooms,
+      propertyType: $propertyType
+    ) {
+      _id
+      address
+      city
+      postcode
+      price
+      description
+      images
+      latitude
+      longitude
+      bedrooms
+      propertyType
+    }
+  }
+`;
+export const DELETE_PROPERTY = gql`
+  mutation removeProperty($propertyId: ID!) {
+    removeProperty(propertyId: $propertyId) {
+      _id
+    }
+  }
+`;

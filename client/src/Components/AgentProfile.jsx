@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { AGENT_PROPERTIES } from '../utils/queries';
-import { ADD_PROPERTY } from '../utils/mutations';
+import { ADD_PROPERTY, DELETE_PROPERTY } from '../utils/mutations';
 import getCoordinatesFromAddress from '../utils/geocode';
 import { Button, Modal, Form } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/Agents.css';
+import EditPropertyForm from './EditProperty';
 
 const AgentDashboard = () => {
   const { loading, error, data, refetch } = useQuery(AGENT_PROPERTIES);
   const [addProperty] = useMutation(ADD_PROPERTY);
-  const [showModal, setShowModal] = useState(false);
+  const [deleteProperty] = useMutation(DELETE_PROPERTY);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [propertyToEdit, setPropertyToEdit] = useState(null);
   const [propertyDetails, setPropertyDetails] = useState({
     address: '',
     city: '',
@@ -56,8 +60,19 @@ const AgentDashboard = () => {
       });
       refetch();
 
-      setShowModal(false);
+      setShowAddModal(false);
       setPropertyDetails({ address: '', city: '', postcode: '', price: '', description: '', images: [], bedrooms: '', propertyType: '' }); // Reset form
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleDeleteProperty = async (propertyId) => {
+    try {
+      await deleteProperty({
+        variables: { propertyId },
+      });
+      refetch();
     } catch (e) {
       console.error(e);
     }
@@ -72,7 +87,7 @@ const AgentDashboard = () => {
     <div>
       <div className="property-list">
         <h1>Agent Dashboard</h1>
-        <Button variant="primary" onClick={() => setShowModal(true)} className='button'>
+        <Button variant="primary" onClick={() => setShowAddModal(true)} className='button'>
           Add Property
         </Button>
         <h2>Your Properties:</h2>
@@ -88,13 +103,22 @@ const AgentDashboard = () => {
                   <strong>Bedrooms:</strong> {property.bedrooms}<br />
                   <strong>Type:</strong> {property.propertyType}
                 </div>
+                <Button variant="secondary" className='button' onClick={()  => {
+                  setPropertyToEdit(property);
+                  setShowEditModal(true);
+                }}>
+                  Edit
+                </Button>
+                <Button variant="danger" className='delete' onClick={() => handleDeleteProperty(property._id)}>
+                  Delete
+                </Button>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
+      <Modal show={showAddModal} onHide={() => setShowAddModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title className='modal-title'>Add Property</Modal.Title>
         </Modal.Header>
@@ -190,7 +214,7 @@ const AgentDashboard = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary"  onClick={() => setShowModal(false)}>
+          <Button variant="secondary"  onClick={() => setShowAddModal(false)}>
             Close
           </Button>
           <Button variant="primary" className='button' onClick={handleAddProperty}>
@@ -198,6 +222,15 @@ const AgentDashboard = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      {propertyToEdit && (
+        <EditPropertyForm
+          show={showEditModal}
+          handleClose={() => setShowEditModal(false)}
+          property={propertyToEdit}
+          refetch={refetch}
+        />
+      )}
     </div>
   );
 };
