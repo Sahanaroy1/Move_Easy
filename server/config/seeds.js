@@ -1,5 +1,11 @@
 const { Pool } = require('pg');
 const PgSeed = require('pg-seed');
+const { User, Property } = require('../models');
+const cleanDB = require('./cleanDB');
+
+db.once('open', async () => {
+  await cleanDB('User', 'username');
+  await cleanDB('Property', 'property');
 
 const pool = new Pool({});
 
@@ -136,3 +142,7 @@ seed.run({
   columns: propertiesTable,
 });
 
+console.log('properties seeded');
+
+ process.exit();
+});
