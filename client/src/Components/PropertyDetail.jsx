@@ -1,52 +1,88 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Map from './Map';
-import '../styles/PropertyDetail.css';
+import { useQuery } from '@apollo/client';
+import { GET_PROPERTY_BY_ID } from '../utils/queries';
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import styles from '../styles/PropertyDetail.module.css';
+import Map from '../Components/PropertyMap'
+const PropertyDetails = () => {
+  const { propertyId } = useParams();
+  const { loading, error, data } = useQuery(GET_PROPERTY_BY_ID, {
+    variables: { propertyId },
+  });
 
-const properties = [
-    { id: 1, name: 'Property 1', description: 'Description of Property 1', price: 250000, area: 1200, lat: 40.712776, lng: -74.005974 },
-    { id: 2, name: 'Property 2', description: 'Description of Property 2', price: 300000, area: 1500, lat: 34.052235, lng: -118.243683 },
-];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-const PropertyDetail = () => {
-    const [property, setProperty] = useState();
-    const { propertyId } = useParams();
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
-    useEffect(() => {
-        const fetchProperty = async () => {
-            try {
-                const response = await fetch(`/properties/${propertyId}`);
-                const data = await response.json();
-                setProperty(data);
-            } catch (error) {
-                console.error('Error fetching property:', error);
-            }
-        };
+  const { property } = data;
+  const totalImages = property.images.length;
 
-        fetchProperty();
-    }, [propertyId]);
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % property.images.length);
+  };
 
-    if (!property) {
-        return <div>
-            <h2>Property</h2>
-        </div>
-    };
-
-    return (
-        <div>
-            <h2>{property.name}</h2>
-            <div className="property-detail-container">
-                <div className="property-detail-left">
-                    <Image src={property.imageUrl} alt={property.name} />
-                    <p>{property.description}</p>
-                </div>
-                <div className="property-detail-right">
-                    <p>{property.description}</p>
-                </div>
+  return (
+    <div>
+      <Container className={styles.propertyDetails}>
+        <Row>
+          <Col md={8} className={styles.col}>
+            <div className={styles.imageContainer}>
+            <div className={styles.imageCount}>
+                {currentImageIndex + 1}/{totalImages}
+              </div>
+              <img
+                src={property.images[currentImageIndex] || 'placeholder.jpg'}
+                alt="Property"
+                className={styles.propertyImage}
+              />
+           {property.images.length > 1 && (
+                <Button variant="secondary" onClick={nextImage} className={styles.nextButton}>
+                  Next Image
+                </Button>
+              )}
+              
             </div>
-            <Map locations={[property]} />
-        </div>
-    );
+           
+                   
+           
+            <div className={styles.propertyInfo}>
+              <h3>
+                {property.address}, {property.city}, {property.postcode}
+              </h3>
+              <p>{property.description}</p>
+              <div className={styles.propertyFeatures}>
+                <p>
+                  <strong>Price:</strong> ${property.price}
+                </p>
+                <p>
+                  <strong>Bedrooms:</strong> {property.bedrooms}
+                </p>
+                <p>
+                  <strong>Property Type:</strong> {property.propertyType}
+                </p>
+              </div>
+            </div>
+            
+          </Col>
+          <Col md={4}>
+            <div className={styles.contactSection}>
+              <h4>Contact Agent</h4>
+              <p>
+                For more information or to schedule a viewing, please contact the agent.
+              </p>
+              <Button variant="primary">Contact Agent</Button>
+            </div>
+            <div className={styles.mapContainer}>
+              <Map properties={property} className="map-container"/>
+              </div>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  );
 };
 
-export default PropertyDetail;
+export default PropertyDetails;

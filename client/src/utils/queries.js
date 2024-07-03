@@ -34,3 +34,20 @@ export const GET_PROPERTIES = gql`
     }
   }
 `;
+export const GET_PROPERTY_BY_ID = gql`
+  query getProperty($propertyId: ID!) {
+    property(propertyId: $propertyId) {
+      _id
+      address
+      city
+      postcode
+      price
+      description
+      latitude
+    longitude
+      images
+      bedrooms
+      propertyType
+    }
+  }
+`;

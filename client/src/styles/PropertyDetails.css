@@ -1,0 +1,37 @@
+.property-details {
+    margin-top: 20px;
+  }
+  
+  .image-container {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+  
+  .property-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .property-info {
+    margin-top: 20px;
+  }
+  
+  .property-features p {
+    margin: 0;
+    padding: 5px 0;
+  }
+  
+  .contact-section {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .contact-section h4 {
+    margin-bottom: 15px;
+  }
+  
