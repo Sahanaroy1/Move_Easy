@@ -1,6 +1,8 @@
 ## Move_Easy
 
-* As our final project we are creating a real estate web application where people can look for houses to rent or busy. Agency or house owner can add their property for sale or rent. 
+* As our final project we are creating a real estate web application where people can look for houses to rent or buy. Agency or house owner can add their property for sale or rent. MoveEasy aims to give users an easy-to-use and aesthetically pleasing platform for viewing houses. The website will prioritize providing essential details using a simplistic style, including property pricing, photos, regions, and contact details. To guarantee that it satisfies the needs of potential tenants and property buyers, this concept describes the characteristics and organization of the website.
+
+* To build this application we user React in the frontend, on the server side we used GraplQl, Node js and express. We have user MongoDb and mongoose ODM for the database. We
 
 # Technologies used:
 
