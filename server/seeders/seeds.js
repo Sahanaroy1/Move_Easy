@@ -1,3 +1,4 @@
+const db = require('../config/connection');
 const propertySeeds = require('./propertySeeds.json');
 const { Property } = require('../models');
 const cleanDB = require('./cleanDB');
