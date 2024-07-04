@@ -41,6 +41,7 @@ img .logo{
 img.main-image {
   height: 100px;
   width: 100px;
+  padding-top: 12px;
 }
 .logo-container{
   font-family: 'roberto', sans-serif;

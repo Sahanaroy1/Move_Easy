@@ -15,7 +15,7 @@ PWA plugin is also used and its downloadable also.
 
 ## Acceptance Criteria
 * It's done when the single page application is loaded. Its presented with a home page with a header section and a footer section.
-* It's done when the header is presented with a logo on the left, name of the application in the center, on the right there is property button login and signup buttons.
+* It's done when the header is presented with a logo and name on the left, search option by city or postcode in the center and on the right there is property button login and signup buttons.
 * It's done when the footer section linked with the social media icons.
 * It's done when for first time user signup or old user login, the navbar option changes to Properties, Agent Dashboard and logout.
 * It's done when the home page is presented with a background image and a quote, if the user scrolls down can see some random listed properties and some divs displaying why to choose Move Easy.
