@@ -14,8 +14,7 @@
     "images": "https://media.rightmove.co.uk/dir/crop/10:9-16:9/34k/33998/73864112/33998_542689_IMG_01_0001_max_476x317.jpg",
     "latitude": 51.4985,
     "longitude": -0.1768,
-    "agent": "Robert Smith",
-    "createdAt": "2023-12-23"
+    "agent": "Robert Smith"
   },
   {
     "id": 59309477,
@@ -32,8 +31,7 @@
     "images": "https://media.rightmove.co.uk/dir/crop/10:9-16:9/76k/75148/59309477/75148_981263_IMG_17_0000_max_476x317.jpg",
     "latitude": 51.4708,
     "longitude": -0.0186,
-    "agent": "Robert Smith",
-    "createdAt": "2023-12-23"
+    "agent": "Robert Smith"
   },
   {
     "id": 56463883,
@@ -50,8 +48,7 @@
     "images": "https://media.rightmove.co.uk/dir/crop/10:9-16:9/78k/77804/56463883/77804_4199681_IMG_01_0000_max_476x317.jpg",
     "latitude": 51.5408,
     "longitude": -0.2018,
-    "agent": "Robert Smith",
-    "createdAt": "2023-12-23"
+    "agent": "Robert Smith"
   },
   {
     "id": 61144421,
@@ -68,8 +65,7 @@
     "images": "https://media.rightmove.co.uk/dir/crop/10:9-16:9/98k/97688/61144421/97688_5C_507B_IMG_15_0000_max_476x317.jpg",
     "latitude": 51.4878,
     "longitude": -0.0000,
-    "agent": "Robert Smith",
-    "createdAt": "2023-12-23"
+    "agent": "Robert Smith"
   },
   {
     "id": 45877821,
@@ -86,8 +82,7 @@
     "images": "https://media.rightmove.co.uk/dir/crop/10:9-16:9/151k/150773/",
     "latitude": 51.5078,
     "longitude": -0.0000,
-    "agent": "Robert Smith",
-    "createdAt": "2023-12-23"
+    "agent": "Robert Smith"
   },
   {
     "id": 45877824,
@@ -104,8 +99,7 @@
     "images": "https://media.rightmove.co.uk/dir/crop/10:9-16:9/151k/150773/45877824/150773_CTS160277_IMG_13_0001_max_476x317.jpg",
     "latitude": 51.5078,
     "longitude": -0.00000,
-    "agent": "Robert Smith",
-    "createdAt": "2023-12-23"
+    "agent": "Robert Smith"
   },
   {
     "id": 644090009,
@@ -122,7 +116,6 @@
     "images": "https://media.rightmove.co.uk/dir/crop/10:9/9/34k/339998/644090009_main.jpg",
     "latitude": 51.4878,
     "longitude": -0.00000,
-    "agent": "Robert Smith",
-    "createdAt": "23-12-2021"
+    "agent": "Robert Smith"
   }
 ]
