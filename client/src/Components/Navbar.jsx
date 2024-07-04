@@ -4,7 +4,7 @@ import { Nav, Form, FormControl, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
 import Auth from '../utils/auth'; // Assuming Auth module handles authentication
 import '../styles/Navbar.css';
-import logo from '../assets/Logo.png'; 
+import logo from '../assets/Move easy.png'; 
 
 function Navigation() {
   const navigate = useNavigate(); // Initialize useNavigate hook

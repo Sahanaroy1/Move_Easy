@@ -15,12 +15,13 @@ PWA plugin is also used and its downloadable also.
 
 ## Acceptance Criteria
 * It's done when the single page application is loaded. Its presented with a home page with a header section and a footer section.
-* It's done when the header is presented with a logo on the left, name of the application in the center, on the right there is property button login and signup buttons.
+* It's done when the header is presented with a logo and name on the left, search option by city or postcode in the center and on the right there is property button login and signup buttons.
 * It's done when the footer section linked with the social media icons.
 * It's done when for first time user signup or old user login, the navbar option changes to Properties, Agent Dashboard and logout.
 * It's done when the home page is presented with a background image and a quote, if the user scrolls down can see some random listed properties and some divs displaying why to choose Move Easy.
 * It's done when the Properties is clicked a search bar comes up with price range, no of bedrooms and property type, after selecting all the boxes a buttom comes filter which will help to look for properties with those criteria.
 * Below the search bar on the left is the list of properties and on the right comes a google map pointing those properties location.
+* It's done when on the map a property is seleted a pop up box comes up displaying the address and view details on the left hand corner below, if its clicked property details of that particular property is displayed.
 * It's done when any of the property is clicked property details page opens where all the images for that property comes with the detailed information shows with the location pointing on the map on the right hand side.
 * Along with that for more information or book a viewing Contact Agent button comes above the map.
 * It's done when the Agent Dashboard section is clicked from the navbar a form comes up through which user can add a property mentioning all its details and images.
