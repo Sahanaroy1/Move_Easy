@@ -3,7 +3,7 @@
     "bedrooms": 3,
     "description": "Situated moments from the River Thames in Old Chelsea, this contemporary three bedroom apartment (117sqm) has just undergone an extensive refurbishment and is now presented in exceptional condition and is beautifully interior designed throughout.",
     "address": "CHEYNE WALK, CHELSEA, SW3 1AA",
-    "propertyType": "Flat",
+    "propertyType": "Semi-Detached",
     "price": 1950000,
     "postcode": "SW3 1AA",
     "city": "London",
@@ -16,11 +16,11 @@
     "agent": "Robert Smith"
   },
   {
-    "bedrooms": 2,
+    "bedrooms": 7,
     "description": "This well presented and modern two bedroom flat is situated within a superb development, boasting a stunning reception room with doors to a balcony and a fully fitted kitchen.",
     "address": "Renaissance, Lewisham, SE13 6QN",
-    "propertyType": "Flat",
-    "price": 599950,
+    "propertyType": "Detached",
+    "price": 2900000,
     "postcode": "SE13 6QN",
     "city": "London",
     "propertyUrl": "/property-for-sale/property-59309477.html",
@@ -32,7 +32,7 @@
     "agent": "Robert Smith"
   },
   {
-    "bedrooms": 3,
+    "bedrooms": 5,
     "description": "ABC Estates are pleased to present this 3 bedroom semi detached house For Sale. Located in a popular cul-de-sac close to Sunny Hill Park. The property comprises 2 double and 1 single bedrooms, a large through lounge/diner, fully fitted kitchen, utility room, bathroom with separate WC and shower room...",
     "address": "Chatsworth Close, London, NW10 7QP",
     "propertyType": "Semi-Detached",
@@ -48,10 +48,10 @@
     "agent": "Robert Smith"
   },
   {
-    "bedrooms": 2,
+    "bedrooms": 3,
     "description": "A BRIGHT and SPACIOUS TWO BEDROOM apartment with an OPEN PLAN LIVING/DINING area. The PERFECT space for ENTERTAINING. The MASTER BEDROOM boasts an ENSUITE and UNDERFLOOR HEATING throughout the apartment for the cold days",
     "address": "Eastfields Avenue, London, SW18 1LP",
-    "propertyType": "Apartment",
+    "propertyType": "Semi-Detached",
     "price": 755000,
     "postcode": "SW18 1LP",
     "city": "London",
@@ -64,10 +64,10 @@
     "agent": "Robert Smith"
   },
   {
-    "bedrooms": 1,
+    "bedrooms": 4,
     "description": "A stunning one bedroom apartment on the 28th floor offering 575 Sq. Ft of living space with views directly facing Canary Wharf.",
     "address": "The Madison, Marsh Wall, London, E14",
-    "propertyType": "Apartment",
+    "propertyType": "Detached",
     "price": 730000,
     "postcode": "E14",
     "city": "London",
@@ -80,10 +80,10 @@
     "agent": "Robert Smith"
   },
   {
-    "bedrooms": 2,
+    "bedrooms": 4,
     "description": "A stunning two bedroom apartment on the 31st floor offering 814 Sq. Ft of living space with views towards Millwall Dock and the O2 Arena and River Thames.",
     "address": "The Madison, Marsh Wall, London, E14",
-    "propertyType": "Apartment",
+    "propertyType": "Detached",
     "price": 987000,
     "postcode": "E14",
     "city": "London",
@@ -99,8 +99,8 @@
     "bedrooms": 3,
     "description": "A BRIGHT and SPACIOUS THREE BEDROOM apartment with an OPEN PLAN LIVING/DINING area. The PERFECT space for ENTERTAINING and spending time with family and friends. The MASTER BEDROOM boasts an ENSUITE and UNDERFLOOR HEATING throughout the apartment for the cold days.",
     "address": "Eastfields Avenue, London, SW18 1LP",
-    "propertyType": "Apartment",
-    "price": 1400000,
+    "propertyType": "Semi-Detached",
+    "price": 870000,
     "postcode": "SW18 1LP",
     "city": "London",
     "propertyUrl": "/property-for-sale/property-644090009.html",
