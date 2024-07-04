@@ -73,7 +73,7 @@ const PropertyDetails = () => {
               <p>
                 For more information or to schedule a viewing, please contact the agent.
               </p>
-              <Button variant="primary">Contact Agent</Button>
+              <h4>Agent Email : {property.agent.email}</h4>
             </div>
             <div className={styles.mapContainer}>
               <Map properties={property} className="map-container"/>

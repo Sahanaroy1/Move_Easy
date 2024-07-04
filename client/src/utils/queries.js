@@ -48,7 +48,9 @@ export const GET_PROPERTY_BY_ID = gql`
       images
       bedrooms
       propertyType
-
+      agent {
+        email
+      }
     }
   }
 `;

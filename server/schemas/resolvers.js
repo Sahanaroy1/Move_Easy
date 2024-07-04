@@ -24,8 +24,15 @@ const resolvers = {
       const properties = await Property.find({ agent: agentId });
       return properties;
     },
-    properties: async () => Property.find({}),
-    property: async (_, { propertyId }) => Property.findById(propertyId),
+    properties: async () => {
+      try {
+        const properties = await Property.find().populate('agent');
+        return properties;
+      } catch (error) {
+        throw new Error('Error fetching properties with agents');
+      }
+    },
+    property: async (_, { propertyId }) => Property.findById(propertyId).populate('agent'),
     savedProperties: async (_, __, context) => {
       if (!context.user) {
         throw new AuthenticationError('Unauthorized access');
