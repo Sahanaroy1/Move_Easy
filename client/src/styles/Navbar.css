@@ -25,6 +25,14 @@
 .nav .inputText:focus{
   box-shadow: none;
   border: 1px solid #F2921D;
+  background-color: #f4eded;
+
+
+}
+.nav .inputText{
+  background-color: #f4eded;
+  border: 1px solid #F2921D;
+
 }
 .navbar-logo{
   display: flex;
