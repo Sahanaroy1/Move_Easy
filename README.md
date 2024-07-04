@@ -34,3 +34,6 @@ Snippet of the application:
 
 <img width="1435" alt="Property List Page" src="https://github.com/Sahanaroy1/Move_Easy/assets/127791384/b6bcf98a-7399-4a3d-ab0f-d8e2d07cabbd">
 
+
+<img width="1432" alt="Property Details Page" src="https://github.com/Sahanaroy1/Move_Easy/assets/127791384/7866eca0-2fcd-48f0-a6a5-5fc1aa5ca04c">
+
