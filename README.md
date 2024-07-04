@@ -31,3 +31,6 @@ Render Url:
 Snippet of the application:
 <img width="1438" alt="Home Page" src="https://github.com/Sahanaroy1/Move_Easy/assets/127791384/775681d2-0cd5-41a7-a991-91cb8de37d0e">
 
+
+<img width="1435" alt="Property List Page" src="https://github.com/Sahanaroy1/Move_Easy/assets/127791384/b6bcf98a-7399-4a3d-ab0f-d8e2d07cabbd">
+
