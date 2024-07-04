@@ -21,14 +21,14 @@
 * It's done when the user click the agent dashboard it comes up with a page where agency or owner can add their property.
 * 
 
-Github Link:
+# Github Link:
 https://github.com/Sahanaroy1/Move_Easy
 
-Render Url:
+# Render Url:
 
 
 
-Snippet of the application:
+# Snippet of the application:
 <img width="1438" alt="Home Page" src="https://github.com/Sahanaroy1/Move_Easy/assets/127791384/775681d2-0cd5-41a7-a991-91cb8de37d0e">
 
 
@@ -36,4 +36,6 @@ Snippet of the application:
 
 
 <img width="1432" alt="Property Details Page" src="https://github.com/Sahanaroy1/Move_Easy/assets/127791384/7866eca0-2fcd-48f0-a6a5-5fc1aa5ca04c">
+
+<img width="1432" alt="Add Property Page" src="https://github.com/Sahanaroy1/Move_Easy/assets/127791384/679f229d-daeb-45b9-ba13-341e7ec67e62">
 
