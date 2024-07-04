@@ -30,7 +30,7 @@
     background-color: #F2921D;
     color: white;
     border: none;
-    padding: 8px 16px;
+    padding: 0px 16px;
     cursor: pointer;
     height: 30px;
   }
@@ -78,6 +78,4 @@
     object-fit: cover;
     margin-bottom: 10px;
   }
-  .filter{
-    padding: 0;
-  }
+  

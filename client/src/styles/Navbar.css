@@ -7,6 +7,24 @@
   border-bottom: 3px solid #F2921D;
  
 }
+.search{
+  display: flex;
+}
+.nav .searchBtn{
+  border-color: #F2921D;
+  color: #F2921D;
+  margin-left: 10px;
+}
+.nav .searchBtn:hover{
+  border-color: #F2921D;
+  color: white;
+  background-color: #F2921D;
+}
+
+.nav .inputText:focus{
+  box-shadow: none;
+  border: 1px solid #F2921D;
+}
 .navbar-logo{
   display: flex;
   align-items: center;

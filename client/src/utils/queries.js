@@ -71,3 +71,22 @@ export const GET_SAVED_PROPERTIES = gql`
     }
   }
 `;
+
+export const SEARCH_PROPERTIES = gql`
+  query SearchProperties($searchTerm: String!) {
+    searchProperties(searchTerm: $searchTerm) {
+      _id
+      address
+      city
+      postcode
+      price
+      description
+      bedrooms
+      propertyType
+      latitude
+      longitude
+      images
+      saved
+    }
+  }
+`;

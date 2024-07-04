@@ -10,6 +10,7 @@ import Property from './pages/Property';
 import Footer from './Components/Footer';
 import Agent from './pages/Agents';
 import Saved from './pages/Saved';
+import Search from './pages/Search';
 
 
 import { setContext } from "@apollo/client/link/context";
@@ -46,6 +47,7 @@ const App = () => {
         <Route path="/properties/:propertyId" element={<Property />} />
         <Route path="/agents" element={<Agent />} />
         <Route path="/saved" element={<Saved />} />
+        <Route path="/search/:searchTerm" element={<Search/>} />
 
 
       </Routes>

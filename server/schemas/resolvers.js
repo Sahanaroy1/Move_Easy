@@ -33,6 +33,21 @@ const resolvers = {
       const savedProperties = await Property.find({ saved: true });
       return savedProperties;
     },
+    searchProperties: async (_, { searchTerm }) => {
+      // Define a regular expression to perform case-insensitive search
+      const regex = new RegExp(searchTerm, 'i');
+      
+      // Search properties by address, city, or postcode
+      const properties = await Property.find({
+        $or: [
+          { address: { $regex: regex } },
+          { city: { $regex: regex } },
+          { postcode: { $regex: regex } },
+        ]
+      });
+
+      return properties;
+    },
   },
   Mutation: {
     addUser: async (_, { username, email, password, type }) => {

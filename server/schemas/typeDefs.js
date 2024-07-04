@@ -55,6 +55,7 @@ const typeDefs = gql`
     property(propertyId: ID!): Property
     agentProperties: [Property]
     savedProperties: [Property]
+    searchProperties(searchTerm: String!): [Property]  # New searchProperties query
 
   }
 

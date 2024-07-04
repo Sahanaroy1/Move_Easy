@@ -7,6 +7,7 @@ import '../styles/Properties.css';
 import { MdOutlineBedroomParent } from "react-icons/md";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { TOGGLE_SAVE_PROPERTY } from '../utils/mutations';
+import Auth from '../utils/auth'; // Assuming Auth module handles authentication
 
 const Properties = () => {
   const { loading, error, data } = useQuery(GET_PROPERTIES);
@@ -16,6 +17,8 @@ const Properties = () => {
   const [propertyType, setPropertyType] = useState('');
   const [filteredProperties, setFilteredProperties] = useState([]);
   const [selectedProperty, setSelectedProperty] = useState(null);
+  const isLoggedIn = Auth.loggedIn();
+  const userType = Auth.getUserType();
 
   const [toggleSaveProperty] = useMutation(TOGGLE_SAVE_PROPERTY, {
     onError: (error) => {
@@ -38,8 +41,6 @@ const Properties = () => {
     }
   }, [data]);
 
-
-
   const handleFilter = () => {
     const filtered = data.properties.filter(property => {
       const meetsMinPrice = minPrice ? property.price >= parseFloat(minPrice) : true;
@@ -56,9 +57,8 @@ const Properties = () => {
     toggleSaveProperty({
       variables: { propertyId },
     });
-
     // Update savedProperties state for UI purposes (optimistic update)
-  }
+  };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -115,17 +115,18 @@ const Properties = () => {
             {filteredProperties.map(property => (
               <div key={property._id} className="property-card">
                 <Link to={`/properties/${property._id}`} className="property-link">
-                
                   <img src={property.images.length > 0 ? property.images[0] : 'placeholder.jpg'} alt={`Property`} className="property-image" />
                   <strong>Address:</strong> {property.address}<br />
                   <strong>Price:</strong> ${property.price}<br />
                   <strong><MdOutlineBedroomParent/></strong> {property.bedrooms}<br />
                   <strong>Property Type:</strong> {property.propertyType}
                 </Link>
-                {property.saved ? (
-                  <FaHeart onClick={() => toggleSave(property._id)} className="Heart saved" />
-                ) : (
-                  <FaRegHeart onClick={() => toggleSave(property._id)} className="Heart" />
+                {isLoggedIn && userType === 'CUSTOMER' && ( // Render heart icon only for customers
+                  property.saved ? (
+                    <FaHeart onClick={() => toggleSave(property._id)} className="Heart saved" />
+                  ) : (
+                    <FaRegHeart onClick={() => toggleSave(property._id)} className="Heart" />
+                  )
                 )}
               </div>
             ))}
