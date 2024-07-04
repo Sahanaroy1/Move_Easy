@@ -29,3 +29,5 @@ Render Url:
 
 
 Snippet of the application:
+<img width="1438" alt="Home Page" src="https://github.com/Sahanaroy1/Move_Easy/assets/127791384/775681d2-0cd5-41a7-a991-91cb8de37d0e">
+
