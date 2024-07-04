@@ -114,3 +114,11 @@ export const DELETE_PROPERTY = gql`
     }
   }
 `;
+export const TOGGLE_SAVE_PROPERTY = gql`
+  mutation ToggleSaveProperty($propertyId: ID!) {
+    toggleSaveProperty(propertyId: $propertyId) {
+      _id
+      saved
+    }
+  }
+`;

@@ -30,7 +30,7 @@ export const GET_PROPERTIES = gql`
     latitude
     longitude
     images
-
+    saved
     }
   }
 `;
@@ -48,6 +48,26 @@ export const GET_PROPERTY_BY_ID = gql`
       images
       bedrooms
       propertyType
+
+    }
+  }
+`;
+
+export const GET_SAVED_PROPERTIES = gql`
+  query GetSavedProperties {
+    savedProperties {
+      _id
+      address
+      city
+      postcode
+      price
+      description
+      bedrooms
+      propertyType
+      latitude
+      longitude
+      images
+      saved
     }
   }
 `;

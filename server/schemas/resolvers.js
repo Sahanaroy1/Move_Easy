@@ -26,6 +26,13 @@ const resolvers = {
     },
     properties: async () => Property.find({}),
     property: async (_, { propertyId }) => Property.findById(propertyId),
+    savedProperties: async (_, __, context) => {
+      if (!context.user) {
+        throw new AuthenticationError('Unauthorized access');
+      }
+      const savedProperties = await Property.find({ saved: true });
+      return savedProperties;
+    },
   },
   Mutation: {
     addUser: async (_, { username, email, password, type }) => {
@@ -144,7 +151,32 @@ const resolvers = {
       await Property.findByIdAndRemove(propertyId);
       return property;
     },
+    toggleSaveProperty: async (_, { propertyId }, context) => {
+      const { user } = context;
+
+      // Check if user is authenticated
+      if (!user) {
+        throw new AuthenticationError('Authentication required');
+      }
+
+      try {
+        // Find the property by ID
+        const property = await Property.findById(propertyId);
+        if (!property) {
+          throw new Error('Property not found');
+        }
+
+      
+        // Toggle the saved status
+        property.saved = !property.saved;
+        await property.save();
+
+        return property;
+      } catch (err) {
+        throw new Error(`Error toggling saved status: ${err.message}`);
+      }
+    },
   },
 };
-
+ 
 module.exports = resolvers;

@@ -1,10 +1,6 @@
 const { Schema, model } = require('mongoose');
 
 const propertySchema = new Schema({
-  id: {
-    type: String,
-    required: true,
-  },
   address: {
     type: String,
     required: true,
@@ -57,13 +53,16 @@ const propertySchema = new Schema({
   },
   propertyTitle: {
     type: String,
-    required: true,
   },
   propertyUrl: {
     type: String,
   },
   contactUrl: {
     type: String,
+  },
+  saved: {
+    type: Boolean,
+    default: false, // Initially set to false
   },
 });
 

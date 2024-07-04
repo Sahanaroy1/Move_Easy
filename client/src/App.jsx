@@ -9,6 +9,8 @@ import Properties from './pages/Properties';
 import Property from './pages/Property';
 import Footer from './Components/Footer';
 import Agent from './pages/Agents';
+import Saved from './pages/Saved';
+
 
 import { setContext } from "@apollo/client/link/context";
 const httpLink = createHttpLink({
@@ -43,6 +45,8 @@ const App = () => {
         <Route path="/properties" element={<Properties />} />
         <Route path="/properties/:propertyId" element={<Property />} />
         <Route path="/agents" element={<Agent />} />
+        <Route path="/saved" element={<Saved />} />
+
 
       </Routes>
       <Footer />

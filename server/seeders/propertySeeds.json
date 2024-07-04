@@ -1,6 +1,5 @@
 [
   {
-    "id": 73864112,
     "bedrooms": 3,
     "description": "Situated moments from the River Thames in Old Chelsea, this contemporary three bedroom apartment (117sqm) has just undergone an extensive refurbishment and is now presented in exceptional condition and is beautifully interior designed throughout.",
     "address": "CHEYNE WALK, CHELSEA, SW3 1AA",
@@ -14,11 +13,9 @@
     "images": "https://media.rightmove.co.uk/dir/crop/10:9-16:9/34k/33998/73864112/33998_542689_IMG_01_0001_max_476x317.jpg",
     "latitude": 51.4985,
     "longitude": -0.1768,
-    "agent": "Robert Smith",
-    "createdAt": "2023-12-23"
+    "agent": "Robert Smith"
   },
   {
-    "id": 59309477,
     "bedrooms": 2,
     "description": "This well presented and modern two bedroom flat is situated within a superb development, boasting a stunning reception room with doors to a balcony and a fully fitted kitchen.",
     "address": "Renaissance, Lewisham, SE13 6QN",
@@ -32,11 +29,9 @@
     "images": "https://media.rightmove.co.uk/dir/crop/10:9-16:9/76k/75148/59309477/75148_981263_IMG_17_0000_max_476x317.jpg",
     "latitude": 51.4708,
     "longitude": -0.0186,
-    "agent": "Robert Smith",
-    "createdAt": "2023-12-23"
+    "agent": "Robert Smith"
   },
   {
-    "id": 56463883,
     "bedrooms": 3,
     "description": "ABC Estates are pleased to present this 3 bedroom semi detached house For Sale. Located in a popular cul-de-sac close to Sunny Hill Park. The property comprises 2 double and 1 single bedrooms, a large through lounge/diner, fully fitted kitchen, utility room, bathroom with separate WC and shower room...",
     "address": "Chatsworth Close, London, NW10 7QP",
@@ -50,11 +45,9 @@
     "images": "https://media.rightmove.co.uk/dir/crop/10:9-16:9/78k/77804/56463883/77804_4199681_IMG_01_0000_max_476x317.jpg",
     "latitude": 51.5408,
     "longitude": -0.2018,
-    "agent": "Robert Smith",
-    "createdAt": "2023-12-23"
-  },
+    "agent": "Robert Smith"
+    },
   {
-    "id": 61144421,
     "bedrooms": 2,
     "description": "A BRIGHT and SPACIOUS TWO BEDROOM apartment with an OPEN PLAN LIVING/DINING area. The PERFECT space for ENTERTAINING. The MASTER BEDROOM boasts an ENSUITE and UNDERFLOOR HEATING throughout the apartment for the cold days",
     "address": "Eastfields Avenue, London, SW18 1LP",
@@ -68,11 +61,9 @@
     "images": "https://media.rightmove.co.uk/dir/crop/10:9-16:9/98k/97688/61144421/97688_5C_507B_IMG_15_0000_max_476x317.jpg",
     "latitude": 51.4878,
     "longitude": -0.0000,
-    "agent": "Robert Smith",
-    "createdAt": "2023-12-23"
+    "agent": "Robert Smith"
   },
   {
-    "id": 45877821,
     "bedrooms": 1,
     "description": "A stunning one bedroom apartment on the 28th floor offering 575 Sq. Ft of living space with views directly facing Canary Wharf.",
     "address": "The Madison, Marsh Wall, London, E14",
@@ -86,11 +77,9 @@
     "images": "https://media.rightmove.co.uk/dir/crop/10:9-16:9/151k/150773/",
     "latitude": 51.5078,
     "longitude": -0.0000,
-    "agent": "Robert Smith",
-    "createdAt": "2023-12-23"
+    "agent": "Robert Smith"
   },
   {
-    "id": 45877824,
     "bedrooms": 2,
     "description": "A stunning two bedroom apartment on the 31st floor offering 814 Sq. Ft of living space with views towards Millwall Dock and the O2 Arena and River Thames.",
     "address": "The Madison, Marsh Wall, London, E14",
@@ -104,11 +93,9 @@
     "images": "https://media.rightmove.co.uk/dir/crop/10:9-16:9/151k/150773/45877824/150773_CTS160277_IMG_13_0001_max_476x317.jpg",
     "latitude": 51.5078,
     "longitude": -0.00000,
-    "agent": "Robert Smith",
-    "createdAt": "2023-12-23"
+    "agent": "Robert Smith"
   },
   {
-    "id": 644090009,
     "bedrooms": 3,
     "description": "A BRIGHT and SPACIOUS THREE BEDROOM apartment with an OPEN PLAN LIVING/DINING area. The PERFECT space for ENTERTAINING and spending time with family and friends. The MASTER BEDROOM boasts an ENSUITE and UNDERFLOOR HEATING throughout the apartment for the cold days.",
     "address": "Eastfields Avenue, London, SW18 1LP",
@@ -122,7 +109,6 @@
     "images": "https://media.rightmove.co.uk/dir/crop/10:9/9/34k/339998/644090009_main.jpg",
     "latitude": 51.4878,
     "longitude": -0.00000,
-    "agent": "Robert Smith",
-    "createdAt": "23-12-2021"
+    "agent": "Robert Smith"
   }
 ]

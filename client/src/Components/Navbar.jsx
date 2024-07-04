@@ -33,6 +33,11 @@ function Navigation() {
                 <Nav.Link as={Link} to='/agents' className="nav-link">Agents Dashboard</Nav.Link>
               </li>
             )}
+            {userType === 'CUSTOMER' && (
+              <li className="nav-item">
+                <Nav.Link as={Link} to='/saved' className="nav-link">Saved Properties</Nav.Link>
+              </li>
+            )}
             <li className="nav-item">
               <Nav.Link onClick={handleLogout} className="nav-link">Logout</Nav.Link>
             </li>

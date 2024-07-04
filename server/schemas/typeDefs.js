@@ -40,6 +40,7 @@ const typeDefs = gql`
     longitude: Float
     bedrooms: Int
     propertyType: String
+    saved: Boolean 
   }
 
   type Auth {
@@ -53,6 +54,8 @@ const typeDefs = gql`
     properties: [Property]
     property(propertyId: ID!): Property
     agentProperties: [Property]
+    savedProperties: [Property]
+
   }
 
   type Mutation {
@@ -84,6 +87,8 @@ const typeDefs = gql`
       propertyType: String
     ): Property
     removeProperty(propertyId: ID!): Property
+    toggleSaveProperty(propertyId: ID!): Property
+
   }
 `;
 
