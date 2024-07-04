@@ -3,7 +3,7 @@ import { Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth'; // Assuming Auth module handles authentication
 import '../styles/Navbar.css';
-import logo from '../assets/Logo.png'; 
+import logo from '../assets/Move easy.png'; 
 
 
 function Navigation() {
