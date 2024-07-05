@@ -1,16 +1,23 @@
-.button{
+
+.submit-button{
 background: #F2921D;
 border: none;
-margin-top: 30px;
 margin-right: 5px;
 }
+.button{
+    background: #F2921D;
+    border: none;
+    margin-right: 5px;
+    }
 .delete{
     border: none;
-    margin-top: 30px;
     }
 .button:hover{
 background-color: #ffa200;
 }
+.submit-button:hover{
+    background-color: #ffa200;
+    }
 h1{
     text-align: center;
     color: #F2921D;

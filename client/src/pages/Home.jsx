@@ -68,6 +68,10 @@ const Home = () => {
             <h3>Interactive Property Map</h3>
             <p>Visualize property locations and explore neighborhoods using our integrated map feature.</p>
           </div>
+          <div className="feature">
+            <h3>Property Search Bar</h3>
+            <p>Find your ideal property quickly and easily with our intuitive search bar, filtering by location, price, and property type.</p>
+          </div>
         </div>
       </section>
     </section>

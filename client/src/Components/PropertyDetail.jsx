@@ -73,8 +73,13 @@ const PropertyDetails = () => {
               <p>
                 For more information or to schedule a viewing, please contact the agent.
               </p>
-              <h4>Agent Email : {property.agent.email}</h4>
-            </div>
+
+               {property.agent.email ? (
+          <h4>Agent Email: {property.agent.email}</h4>
+        ) : (
+          <p>Agent email: Coming soon</p>
+        )}
+      </div>
             <div className={styles.mapContainer}>
               <Map properties={property} className="map-container"/>
               </div>

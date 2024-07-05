@@ -165,7 +165,7 @@ const EditPropertyForm = ({ show, handleClose, property, refetch }) => {
         <Button variant="secondary" onClick={handleClose}>
           Close
         </Button>
-        <Button variant="primary" onClick={handleEditProperty}>
+        <Button variant="primary" onClick={handleEditProperty} className='submit-button'>
           Save Changes
         </Button>
       </Modal.Footer>

@@ -217,7 +217,7 @@ const AgentDashboard = () => {
           <Button variant="secondary"  onClick={() => setShowAddModal(false)}>
             Close
           </Button>
-          <Button variant="primary" className='button' onClick={handleAddProperty}>
+          <Button variant="primary" className='submit-button' onClick={handleAddProperty}>
             Add Property
           </Button>
         </Modal.Footer>
