@@ -31,7 +31,7 @@ PWA plugin is also used and its downloadable also.
 https://github.com/Sahanaroy1/Move_Easy
 
 # Render Url:
-
+https://move-easy-h1t1.onrender.com/properties
 
 
 # Snippet of the application:
