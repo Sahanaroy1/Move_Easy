@@ -3,7 +3,7 @@
 * As our final project we are creating a real estate web application where people can look for houses to rent or buy. Agency or house owner can add their property for sale or rent. MoveEasy aims to give users an easy-to-use and aesthetically pleasing platform for viewing houses. The website will prioritize providing essential details using a simplistic style, including property pricing, photos, regions, and contact details. To guarantee that it satisfies the needs of potential tenants and property buyers, this concept describes the characteristics and organization of the website.
 
 * To build this application we user React in the frontend, on the server side we used GraplQl, Node js and express. We have used MongoDb and mongoose ODM for the database. It is deloyed using Render.
-PWA plugin is also used and its downloadable also.
+PWA plugin is added and its also downloadable.
 
 # Technologies used:
 
@@ -25,6 +25,8 @@ PWA plugin is also used and its downloadable also.
 * It's done when any of the property is clicked property details page opens where all the images for that property comes with the detailed information shows with the location pointing on the map on the right hand side.
 * Along with that for more information or book a viewing Contact Agent button comes above the map.
 * It's done when the Agent Dashboard section is clicked from the navbar a form comes up through which user can add a property mentioning all its details and images.
+* It's done when user is logged in as customer a saved property option pops up on the navbar and user can see the property saved under each user.
+* It's done when when logged in as agent user can add a property with all its details and can edit and delete that prpoerty after its saved.
 * It's done when this adding property can only be done when is logged in.
 
 # Github Link:
