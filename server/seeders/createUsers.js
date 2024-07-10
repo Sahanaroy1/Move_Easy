@@ -14,8 +14,6 @@ async function createUsers() {
       type: 'AGENT'
     });
 
-    console.log('User created:', user);
-
     // Return the _id of the created user
     return user._id;
   } catch (error) {

@@ -14,7 +14,6 @@ const Home = () => {
 
   const { properties } = data;
   const displayedProperties = properties.slice(0, 3);
-  console.log(properties);
   return (
     <section className="home-main">
       <section className="welcomeText">

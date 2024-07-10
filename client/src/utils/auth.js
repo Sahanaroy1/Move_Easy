@@ -60,7 +60,6 @@ class AuthService {
   }
   getUserEmail() {
     const profile = this.getProfile();
-    console.log(profile);
     return profile ? profile.email : null;
   }
  

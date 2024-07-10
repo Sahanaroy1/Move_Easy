@@ -31,8 +31,6 @@ const LoginForm = () => {
         },
       });
 
-      console.log('User logged in:', data);
-
       // Optionally, you can redirect or handle login success here
 
       // Clear form fields after successful login

@@ -9,7 +9,6 @@ const Map = ({ properties }) => {
     // Set the map center based on the first property's location
     if (properties.length > 0) {
       const firstProperty = properties[0];
-      console.log(firstProperty.latitude, firstProperty.longitude)
       setMapCenter({
         lat: firstProperty.latitude,
         lng: firstProperty.longitude,

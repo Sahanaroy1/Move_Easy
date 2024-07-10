@@ -42,7 +42,6 @@ const AgentDashboard = () => {
 
       // Fetch coordinates based on address
       const { lat, lon } = await getCoordinatesFromAddress(`${address}, ${city}, ${postcode}`);
-      console.log(lat, lon);
       await addProperty({
         variables: {
           email,
@@ -81,7 +80,6 @@ const AgentDashboard = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
   const { agentProperties } = data;
-  console.log(agentProperties);
 
   return (
     <div>

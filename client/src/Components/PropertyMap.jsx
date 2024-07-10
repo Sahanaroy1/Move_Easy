@@ -5,7 +5,6 @@ const PropertyMap = ({ properties }) => {
   const [mapCenter, setMapCenter] = useState({ lat: parseFloat(properties.latitude) , lng: parseFloat(properties.longitude)});
 
   useEffect(() => {
-    console.log(properties);
     if (properties) {
       setMapCenter({
         lat: parseFloat(properties.latitude),
